@@ -5,7 +5,12 @@ namespace Mummies.Models.ViewModels
 	{
 		public IQueryable<Burialmain> Burialmains { get; set; }
 		public PageInfo PageInfo { get; set; }
+		public IQueryable<BurialmainTextile> burialmainTextiles { get; set; }
+        public IQueryable<Textile> textiles { get; set; }
+        public BurialPageModel burialInfo { get; set; }
 
-	}
+
+
+    }
 }
 

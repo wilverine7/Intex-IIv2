@@ -1,23 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Burial List";
 }
-@model BurialsViewModel;
+@model List<BurialPageModel>;
 
 <div class="text-center">
     <h1 class="display-4">Burial List</h1>
     <p>Each record represents a burial at Fag el-Gamous in Egypt.</p>
 </div>
 
-@foreach (var b in Model.Burialmains)
+@foreach (var b in Model)
 {
     <div class="card">
         <div class="card-body">
             <h5 class="card-title"></h5>
             <h6 class="card-subtitle mb-2 text-muted">@b.Id</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">@b.TextileDescription</p>
             <a href="#" class="card-link">View More</a>
         </div>
     </div>
 }
 
-<div page-model="@Model.PageInfo" page-action="BurialList"></div>
+@*<div page-model="@Model.PageInfo" page-action="BurialList"></div>*@
