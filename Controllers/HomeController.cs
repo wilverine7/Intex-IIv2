@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Mummies.Models;
 using Mummies.Models.Repo;
 using Mummies.Models.ViewModels;
-
-
 namespace Mummies.Controllers;
 
 [AllowAnonymous]

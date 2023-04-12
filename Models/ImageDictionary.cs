@@ -5,13 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
 
 namespace Mummies.Models
-{
+{///////DICTIONARY for IMAGES///////
     public class ImageDictionary
     {
-        public static Dictionary<string, string> CreateDictionary()
+        public static Dictionary<string, List<string>> CreateDictionary()
         {
-            ///////DICTIONARY for IMAGES///////
-
             List<string> list1 = new List<string> {"180N/40E/NE3", "180N/40E/NE4", "180N/40E/NE9", "180N/40E/NE6", "180N/40E/NE3",
             "180N/40E/NE4","180N/40E/NE3", "180N/40E/NE4", "180N/40E/NE3", "180N/40E/NE4", "180N/40E/NE5", "180N/40E/NE7",
             "180N/40E/NE3","180N/40E/NE3", "180N/40E/NE4", "180N/40E/NE5", "180N/40E/NE7", "180N/40E/NE4", "180N/40E/NE5",
@@ -48,26 +46,27 @@ namespace Mummies.Models
             "2002-0085", "2002-0086"};
 
 
-            Dictionary<string, string> ImgDict = new Dictionary<string, string>();
+            Dictionary<string, List<string>> ImgDict = new Dictionary<string, List<string>>();
 
             int x = list1.Count;
             for (int i = 0; i < x; i++)
             {
-                if (ImgDict.ContainsKey(list1[i]))
+                if (ImgDict.ContainsKey(list1[i]) == false)
                 {
-                    string value = ImgDict[list1[i]];
-                    ImgDict[list1[i]] = (value + ',' + list2[i] + ".JPG");
+                    string newvalue = (list2[i] + ".JPG");
+                    List<string> newlist = new List<string> { newvalue };
+                    ImgDict.Add(list1[i], newlist);
                 }
                 else
                 {
-                    string newvalue = (list2[i] + ".JPG");
-                    ImgDict.Add(list1[i], newvalue);
+                    List<string> value = ImgDict[list1[i]];
+                    value.Add(list2[i] + ".JPG");
+                    ImgDict[list1[i]] = value;
                 }
             };
 
             return ImgDict;
         }
-        Dictionary<string, string> Images = CreateDictionary();
+        Dictionary<string, List<string>> Images = CreateDictionary();
     }
 }
-
