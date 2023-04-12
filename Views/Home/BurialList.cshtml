@@ -1,14 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Burial List";
 }
-@model List<BurialPageModel>;
+@model BurialsViewModel;
 
 <div class="text-center">
     <h1 class="display-4">Burial List</h1>
     <p>Each record represents a burial at Fag el-Gamous in Egypt.</p>
 </div>
 
-@foreach (var b in Model)
+@foreach (var b in Model.burialInfo)
 {
     <div class="card">
         <div class="card-body">
@@ -20,4 +20,4 @@
     </div>
 }
 
-@*<div page-model="@Model.PageInfo" page-action="BurialList"></div>*@
+<div page-model="@Model.PageInfo" page-action="BurialList"></div>

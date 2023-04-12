@@ -58,27 +58,38 @@ public class HomeController : Controller
                     })
                     .OrderBy(b => b.Id)
                     .ToList();
-        
-        
 
-        //var data = new BurialsViewModel
-        //{
-        //    Burialmains = _repo.burialdata
-        //    .OrderBy(p => p.Id)
-        //    .Skip((pageNum - 1) * pageSize)
-        //    .Take(pageSize),
 
-        
 
-        //    PageInfo = new PageInfo
-        //    {
-        //        TotalNumBurial = _repo.burialdata.Count(),
-        //        BurialsPerPage = pageSize,
-        //        CurrentPage = pageNum
-        //    }
-        //};
-        
-        return View(burialInfo);
+        var data = new BurialsViewModel
+        {
+            Burialmains = _repo.burialdata
+            .OrderBy(p => p.Id)
+            .Skip((pageNum - 1) * pageSize)
+            .Take(pageSize),
+
+            burialInfo = (from t in _repo.textiles
+                          join bmt in _repo.burialmaintextiles
+                          on t.Id equals bmt.MainTextileid
+                          join bm in _repo.burialdata
+                          on bmt.MainBurialmainid equals bm.Id
+                          select new BurialPageModel
+                          {
+                              Id = bm.Id,
+                              TextileDescription = t.Description
+                          })
+                    .OrderBy(b => b.Id)
+                    .ToList(),
+
+        PageInfo = new PageInfo
+            {
+                TotalNumBurial = _repo.burialdata.Count(),
+                BurialsPerPage = pageSize,
+                CurrentPage = pageNum
+            }
+        };
+
+        return View(data);
     }
 
     ////////////////////
