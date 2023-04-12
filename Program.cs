@@ -26,6 +26,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -74,6 +76,7 @@ builder.Services.AddAuthorization(options =>
         .RequireAuthenticatedUser()
         .Build();
 });
+
 
 var app = builder.Build();
 

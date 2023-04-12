@@ -36,28 +36,28 @@ public class HomeController : Controller
     ////////////////////
     public IActionResult BurialList(int pageNum = 1)
     {
-        int pageSize = 25;
+        int pageSize = 1;
         //ViewBag.burialmain = from burialdata in _repo.burialdata
         //                     join burialmaintextiles in _repo.burialmaintextiles
         //                     on burialdata.Id equals burialmaintextiles.MainBurialmainid
         //                     select "*".ToList();
 
-        var BurialId = _repo.burialdata
-            .OrderBy(p => p.Id).ToList();
-        var TextileId = _repo.burialmaintextiles.OrderBy(p => p.MainBurialmainid).ToList();
+        //var BurialId = _repo.burialdata
+        //    .OrderBy(p => p.Id).ToList();
+        //var TextileId = _repo.burialmaintextiles.OrderBy(p => p.MainBurialmainid).ToList();
 
-        var burialInfo = (from t in _repo.textiles
-                    join bmt in _repo.burialmaintextiles
-                    on t.Id equals bmt.MainTextileid
-                    join bm in _repo.burialdata
-                    on bmt.MainBurialmainid equals bm.Id
-                    select new BurialPageModel
-                    {
-                        Id = bm.Id,
-                        TextileDescription = t.Description
-                    })
-                    .OrderBy(b => b.Id)
-                    .ToList();
+        //var burialInfo = (from t in _repo.textiles
+        //            join bmt in _repo.burialmaintextiles
+        //            on t.Id equals bmt.MainTextileid
+        //            join bm in _repo.burialdata
+        //            on bmt.MainBurialmainid equals bm.Id
+        //            select new BurialPageModel
+        //            {
+        //                Id = bm.Id,
+        //                TextileDescription = t.Description
+        //            })
+        //            .OrderBy(b => b.Id)
+        //            .ToList();
 
 
 
