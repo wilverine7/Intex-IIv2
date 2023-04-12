@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Mummies.Models;
 using Mummies.Models.Repo;
+using Mummies.Models.ViewModels;
+
 
 namespace Mummies.Controllers;
 
@@ -34,18 +36,28 @@ public class HomeController : Controller
     ////////////////////
     public IActionResult BurialList(int pageNum = 1)
     {
-        int pageSize = 5;
+        int pageSize = 25;
         //ViewBag.burialmain = from burialdata in _repo.burialdata
-        //            join burialmaintextiles in _repo.burialmaintextiles
-        //            on burialdata.Id equals burialmaintextiles.MainBurialmainid
-        //            select "*".ToList();
+        //                     join burialmaintextiles in _repo.burialmaintextiles
+        //                     on burialdata.Id equals burialmaintextiles.MainBurialmainid
+        //                     select "*".ToList();
 
-
-        var blah = _repo.burialdata
+        var data = new BurialsViewModel
+        {
+            Burialmains = _repo.burialdata
             .OrderBy(p => p.Id)
             .Skip((pageNum - 1) * pageSize)
-            .Take(pageSize);
-        return View(blah);
+            .Take(pageSize),
+
+            PageInfo = new PageInfo
+            {
+                TotalNumBurial = _repo.burialdata.Count(),
+                BurialsPerPage = pageSize,
+                CurrentPage = pageNum
+            }
+        };
+        
+        return View(data);
     }
 
     ////////////////////

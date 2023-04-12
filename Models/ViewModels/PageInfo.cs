@@ -8,7 +8,7 @@ namespace Mummies.Models.ViewModels
 		public int CurrentPage { get; set; }
 
 		//calculates number of pages needed
-		public int TotalPages => (int) ((double)TotalNumBurial / BurialsPerPage);
+		public int TotalPages => (int) Math.Ceiling((double)TotalNumBurial / BurialsPerPage);
 	}
 }
 

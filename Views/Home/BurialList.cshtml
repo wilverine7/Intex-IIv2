@@ -1,14 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Burial List";
 }
-@model IQueryable<Burialmain>;
+@model BurialsViewModel;
 
 <div class="text-center">
     <h1 class="display-4">Burial List</h1>
     <p>Each record represents a burial at Fag el-Gamous in Egypt.</p>
 </div>
 
-@foreach (var b in Model)
+@foreach (var b in Model.Burialmains)
 {
     <div class="card">
         <div class="card-body">
@@ -20,5 +20,4 @@
     </div>
 }
 
-<a asp-action="BurialList" asp-route-pageNum="1">1</a>
-<a asp-action="BurialList" asp-route-pageNum="2">2</a>
+<div page-model="@Model.PageInfo" page-action="BurialList"></div>
