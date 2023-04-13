@@ -33,71 +33,11 @@ public class HomeController : Controller
     ////////////////////
     /////   BURIAL LIST
     ////////////////////
-    public IActionResult BurialList(string Sex, string HeadDirection, int pageNum = 1)
+    public IActionResult BurialList(string Sex, string HeadDirection, string Depth, int pageNum = 1)
     {
 
-
-        // creates list of Id's 
-        //var BurialIds= _repo.burialdata.OrderBy(p => p.Id).ToList();
-
-        //initialize dictionary 
-        //Dictionary<long, List<TextileData>> TextileDict = new Dictionary<long, List<TextileData>>();
-
-        //get the Associated Textile info for each Id and assign it to a dictionary 
-        //foreach (var id in BurialIds)
-        //{
-        //var TextileInfo = (from t in _repo.textiles
-        //                   join bmt in _repo.burialmaintextiles
-        //                   on t.Id equals bmt.MainTextileid
-
-        //                   join bm in _repo.burialdata
-        //                   on bmt.MainBurialmainid equals bm.Id
-
-        //                   join ct in _repo.colortextiles
-        //                   on t.Id equals ct.MainTextileid
-
-        //                   join c in _repo.colors
-        //                   on ct.MainColorid equals c.Id
-
-        //                   join st in _repo.structuretextiles
-        //                   on t.Id equals st.MainTextileid
-
-        //                   join s in _repo.structures
-        //                   on st.MainStructureid equals s.Id
-
-        //                   join tft in _repo.textilefunctiontextiles
-        //                   on t.Id equals tft.MainTextileid
-
-        //                   join tf in _repo.textilefunctions
-        //                   on tft.MainTextilefunctionid equals tf.Id
-
-        //                   where bm.Id == id.Id
-        //     select new TextileData
-        //     {
-        //         TextileId = t.Id,
-        //         TextileStructure = s.Value,
-        //         TextileColor = c.Value,
-
-                           //need to import csv to database
-                           //EstimatedStature = 
-
-                           //     })
-                           //            .ToList();
-
-                           //    TextileDict.Add(id.Id, TextileInfo);
-
-
-                           //}
-
-
         int pageSize = 25;
-        
 
-        /////////
-        //filter by sex
-        /////////
-        if (Sex != null)
-            {
             var data = new BurialsViewModel
             {
                 Burialmains = _repo.burialdata
@@ -111,7 +51,8 @@ public class HomeController : Controller
                               on t.Id equals bmt.MainTextileid
                               join bm in _repo.burialdata
                               on bmt.MainBurialmainid equals bm.Id
-                              where (bm.Sex == Sex)
+                              where ((bm.Sex == Sex || Sex == null) && (bm.Depth == Depth || Depth == null))
+                              orderby bm.Id
                               select new BurialPageModel
                               {
                                   Id = bm.Id,
@@ -141,178 +82,16 @@ public class HomeController : Controller
                     TotalNumBurial = _repo.burialdata.Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
-                },
+                }
 
                 //TextileDict = TextileDict,
                 //BurialIds = _repo.burialdata.OrderBy(p => p.Id).ToList()
 
             };
             return View(data);
-        }
-        else
-        {
-            var data = new BurialsViewModel
-            {
-                Burialmains = _repo.burialdata
-                .OrderBy(p => p.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
-
-
-                burialInfo = (from t in _repo.textiles
-                              join bmt in _repo.burialmaintextiles
-                              on t.Id equals bmt.MainTextileid
-                              join bm in _repo.burialdata
-                              on bmt.MainBurialmainid equals bm.Id
-                              select new BurialPageModel
-                              {
-                                  Id = bm.Id,
-                                  Sex = bm.Sex,
-                                  TextileDescription = t.Description,
-
-                                  //this is how we want it
-
-                                  //TextileId = t.Id,
-                                  //TextileStructure = s.Value,
-                                  //TextileColor = c.Value,
-                                  //Sex = bm.Sex,
-                                  BurialDepth = bm.Depth,
-                                  //Age = bm.Ageatdeath,
-                                  //HeadDirection = bm.Headdirection,
-                                  //TextileFunction = tf.Value,
-                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth +"/"+ bm.Squareeastwest + bm.Eastwest +"/"+ bm.Area + bm.Burialnumber)
-
-                                  //need to import csv to database
-                                  //EstimatedStature = 
-                              })
-
-                        .ToList(),
-
-                PageInfo = new PageInfo
-                {
-                    TotalNumBurial = _repo.burialdata.Count(),
-                    BurialsPerPage = pageSize,
-                    CurrentPage = pageNum
-                },
-
-                //TextileDict = TextileDict,
-                //BurialIds = _repo.burialdata.OrderBy(p => p.Id).ToList()
-
-            };
-            return View(data);
-        }
-
-        /////////
-        //filter by Burial ID
-        //////////
         
-        //if (HeadDirection != null)
-        //{
-        //    var data = new BurialsViewModel
-        //    {
-        //        Burialmains = _repo.burialdata
-        //            .OrderBy(p => p.Id)
-        //            .Skip((pageNum - 1) * pageSize)
-        //            .Take(pageSize),
+     }
 
-
-        //        burialInfo = (from t in _repo.textiles
-        //                      join bmt in _repo.burialmaintextiles
-        //                      on t.Id equals bmt.MainTextileid
-        //                      join bm in _repo.burialdata
-        //                      on bmt.MainBurialmainid equals bm.Id
-        //                      where (bm.Headdirection == HeadDirection)
-        //                      select new BurialPageModel
-        //                      {
-        //                          Id = bm.Id,
-        //                          Sex = bm.Sex,
-        //                          TextileDescription = t.Description,
-
-        //                          //this is how we want it
-
-        //                          //TextileId = t.Id,
-        //                          //TextileStructure = s.Value,
-        //                          //TextileColor = c.Value,
-        //                          //Sex = bm.Sex,
-        //                          BurialDepth = bm.Depth,
-        //                          //Age = bm.Ageatdeath,
-        //                          //HeadDirection = bm.Headdirection,
-        //                          //TextileFunction = tf.Value,
-        //                          BurialId = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
-
-        //                          //need to import csv to database
-        //                          //EstimatedStature = 
-        //                      })
-
-        //                    .ToList(),
-
-        //        PageInfo = new PageInfo
-        //        {
-        //            TotalNumBurial = _repo.burialdata.Count(),
-        //            BurialsPerPage = pageSize,
-        //            CurrentPage = pageNum
-        //        },
-
-                
-
-        //    };
-        //    return View(data);
-        //}
-        //else
-        //{
-        //    var data = new BurialsViewModel
-        //    {
-        //        Burialmains = _repo.burialdata
-        //        .OrderBy(p => p.Id)
-        //        .Skip((pageNum - 1) * pageSize)
-        //        .Take(pageSize),
-
-
-        //        burialInfo = (from t in _repo.textiles
-        //                      join bmt in _repo.burialmaintextiles
-        //                      on t.Id equals bmt.MainTextileid
-        //                      join bm in _repo.burialdata
-        //                      on bmt.MainBurialmainid equals bm.Id
-        //                      select new BurialPageModel
-        //                      {
-        //                          Id = bm.Id,
-        //                          Sex = bm.Sex,
-        //                          TextileDescription = t.Description,
-
-        //                          //this is how we want it
-
-        //                          //TextileId = t.Id,
-        //                          //TextileStructure = s.Value,
-        //                          //TextileColor = c.Value,
-        //                          //Sex = bm.Sex,
-        //                          BurialDepth = bm.Depth,
-        //                          //Age = bm.Ageatdeath,
-        //                          //HeadDirection = bm.Headdirection,
-        //                          //TextileFunction = tf.Value,
-        //                          BurialId = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
-
-        //                          //need to import csv to database
-        //                          //EstimatedStature = 
-        //                      })
-
-        //                .ToList(),
-
-        //        PageInfo = new PageInfo
-        //        {
-        //            TotalNumBurial = _repo.burialdata.Count(),
-        //            BurialsPerPage = pageSize,
-        //            CurrentPage = pageNum
-        //        },
-
-        //        //TextileDict = TextileDict,
-        //        //BurialIds = _repo.burialdata.OrderBy(p => p.Id).ToList()
-
-        //    };
-        //    return View(data);
-        //}
-
-
-    }
 
     ////////////////////
     /////   SUPERVISED
