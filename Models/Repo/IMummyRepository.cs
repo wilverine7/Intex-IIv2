@@ -7,7 +7,9 @@ namespace Mummies.Models.Repo
         IQueryable<Textile> textiles { get; }
         IQueryable<BurialmainTextile> burialmaintextiles { get; }
 
-
+        void AddBurial(Burialmain burial);
+        void UpdateBurial(Burialmain burial);
+        void DeleteBurial(int burialId);
 
     }
 }

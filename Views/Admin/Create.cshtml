@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model Burialmain
+
+<h1>Create a Record</h1>
+
+<div>
+    <form method="post">
+        <input asp-for="Id" type="hidden" value=""/><br />
+
+        <label asp-for="Burialid">Burialid: </label>
+        <input asp-for="Burialid" type="text" /><br />
+
+        <label asp-for="Sex">Sex: </label>
+        <input type="radio" /><br />
+
+        <label></label>
+        <input /><br />
+
+        <label></label>
+        <input /><br />
+
+        <label></label>
+        <input /><br />
+
+        <label></label>
+        <input /><br />
+
+        <label></label>
+        <input /><br />
+
+        <label></label>
+        <input /><br />
+
+        <label></label>
+        <input /><br />
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+public long? Burialid { get; set; }
+public string? Sex { get; set; }
+public string? Depth { get; set; }
+public string? Length { get; set; }
+public string? Ageatdeath { get; set; }
+public DateTime? Dateofexcavation { get; set; }
+public string? Text { get; set; }
+public string? Haircolor { get; set; }
+public string? Wrapping { get; set; }
+
+
+    @*public string? Squarenorthsouth { get; set; }
+
+    public string? Headdirection { get; set; }
+
+    public string? Northsouth { get; set; }
+
+    public string? Eastwest { get; set; }
+
+    public string? Adultsubadult { get; set; }
+
+    public string? Facebundles { get; set; }
+
+    public string? Southtohead { get; set; }
+
+    public string? Preservation { get; set; }
+
+    public string? Fieldbookpage { get; set; }
+
+    public string? Squareeastwest { get; set; }
+
+    public string? Goods { get; set; }
+
+    public string? Westtohead { get; set; }
+
+    public string? Samplescollected { get; set; }
+
+    public string? Area { get; set; }
+
+    public string? Burialnumber { get; set; }
+
+    public string? Dataexpertinitials { get; set; }
+
+    public string? Westtofeet { get; set; }
+
+    public string? Southtofeet { get; set; }
+
+    public string? Excavationrecorder { get; set; }
+
+    public string? Photos { get; set; }
+
+    public string? Hair { get; set; }
+
+    public string? Burialmaterials { get; set; }
+
+    public string? Fieldbookexcavationyear { get; set; }
+
+    public string? Clusternumber { get; set; }*@
+

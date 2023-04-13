@@ -47,15 +47,15 @@ public class HomeController : Controller
         //var TextileId = _repo.burialmaintextiles.OrderBy(p => p.MainBurialmainid).ToList();
 
         //var burialInfo = (from t in _repo.textiles
-        //            join bmt in _repo.burialmaintextiles
-        //            on t.Id equals bmt.MainTextileid
-        //            join bm in _repo.burialdata
-        //            on bmt.MainBurialmainid equals bm.Id
-        //            select new BurialPageModel
-        //            {
-        //                Id = bm.Id,
-        //                TextileDescription = t.Description
-        //            })
+        //                  join bmt in _repo.burialmaintextiles
+        //                  on t.Id equals bmt.MainTextileid
+        //                  join bm in _repo.burialdata
+        //                  on bmt.MainBurialmainid equals bm.Id
+        //                  select new BurialPageModel
+        //                  {
+        //                      Id = bm.Id,
+        //                      TextileDescription = t.Description
+        //                  })
         //            .OrderBy(b => b.Id)
         //            .ToList();
 

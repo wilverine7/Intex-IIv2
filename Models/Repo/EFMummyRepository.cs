@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Mummies.Controllers;
 
 namespace Mummies.Models.Repo
@@ -17,6 +18,25 @@ namespace Mummies.Models.Repo
         public IQueryable<BurialmainTextile> burialmaintextiles => _context.BurialmainTextiles;
 
 
+
+        public void AddBurial(Burialmain burial)
+        {
+            _context.Burialmains.Add(burial);
+            _context.SaveChanges();
+        }
+
+        public void UpdateBurial(Burialmain burial)
+        {
+            _context.Entry(burial).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void DeleteBurial(int burialId)
+        {
+            var burial = _context.Burialmains.Find(burialId);
+            _context.Burialmains.Remove(burial);
+            _context.SaveChanges();
+        }
 
     }
 }
