@@ -19,10 +19,14 @@
         }
     }
 
+<div style="display:flex; flex-direction:column">
     @foreach (var b in Model.PhotoData)
     {
-        <img src="@b.PhotoUrl" alt="Textile Image" width="300">
-        <p>@b.TextileDescription</p>
+        <figure style="display:inline-block;">
+            <img style="display:inline-block;margin-right:10px" src="@b.PhotoUrl" alt="Textile Image" width="250">
+            <figcaption style="max-width:500px; word-wrap:break-word; display:inline-block">@b.TextileDescription</figcaption>
+        </figure>
     }
+</div>
 
 </div>
