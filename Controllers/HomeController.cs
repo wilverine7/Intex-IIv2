@@ -369,7 +369,9 @@ public class HomeController : Controller
                          where bmt.MainBurialmainid == Id
                          select new BurialDetailsPageModel
                          {
-                             PhotoUrl = pd.Url
+                             PhotoUrl = pd.Url,
+                             TextileDescription = t.Description
+
                          }).ToList(),
             CompositeId = (from bm in _repo.burialdata
                           where bm.Id == Id

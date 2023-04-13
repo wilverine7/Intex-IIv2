@@ -14,14 +14,10 @@
     {
         <p>@b.CompKey</p>
     }
-    @foreach (var b in Model.Details)
-    {
-
-        <p>@b.TextileDescription</p>
-
-    }
+    
     @foreach (var b in Model.PhotoData)
     {
         <img src="@b.PhotoUrl" alt="Textile Image" width="300">
+        <p>@b.TextileDescription</p>
     }
 </div>
