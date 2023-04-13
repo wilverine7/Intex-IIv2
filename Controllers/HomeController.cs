@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Mummies.Models;
 using Mummies.Models.Repo;
 using Mummies.Models.ViewModels;
+using System.Collections.Generic;
+
 
 
 namespace Mummies.Controllers;
@@ -36,30 +38,62 @@ public class HomeController : Controller
     ////////////////////
     public IActionResult BurialList(int pageNum = 1)
     {
-        int pageSize = 1;
-        //ViewBag.burialmain = from burialdata in _repo.burialdata
-        //                     join burialmaintextiles in _repo.burialmaintextiles
-        //                     on burialdata.Id equals burialmaintextiles.MainBurialmainid
-        //                     select "*".ToList();
-
-        //var BurialId = _repo.burialdata
-        //    .OrderBy(p => p.Id).ToList();
-        //var TextileId = _repo.burialmaintextiles.OrderBy(p => p.MainBurialmainid).ToList();
-
-        //var burialInfo = (from t in _repo.textiles
-        //            join bmt in _repo.burialmaintextiles
-        //            on t.Id equals bmt.MainTextileid
-        //            join bm in _repo.burialdata
-        //            on bmt.MainBurialmainid equals bm.Id
-        //            select new BurialPageModel
-        //            {
-        //                Id = bm.Id,
-        //                TextileDescription = t.Description
-        //            })
-        //            .OrderBy(b => b.Id)
-        //            .ToList();
 
 
+        // creates list of Id's 
+        //var BurialIds= _repo.burialdata.OrderBy(p => p.Id).ToList();
+
+        //initialize dictionary 
+        //Dictionary<long, List<TextileData>> TextileDict = new Dictionary<long, List<TextileData>>();
+
+        //get the Associated Textile info for each Id and assign it to a dictionary 
+        //foreach (var id in BurialIds)
+        //{
+        //var TextileInfo = (from t in _repo.textiles
+        //                   join bmt in _repo.burialmaintextiles
+        //                   on t.Id equals bmt.MainTextileid
+
+        //                   join bm in _repo.burialdata
+        //                   on bmt.MainBurialmainid equals bm.Id
+
+        //                   join ct in _repo.colortextiles
+        //                   on t.Id equals ct.MainTextileid
+
+        //                   join c in _repo.colors
+        //                   on ct.MainColorid equals c.Id
+
+        //                   join st in _repo.structuretextiles
+        //                   on t.Id equals st.MainTextileid
+
+        //                   join s in _repo.structures
+        //                   on st.MainStructureid equals s.Id
+
+        //                   join tft in _repo.textilefunctiontextiles
+        //                   on t.Id equals tft.MainTextileid
+
+        //                   join tf in _repo.textilefunctions
+        //                   on tft.MainTextilefunctionid equals tf.Id
+
+        //                   where bm.Id == id.Id
+        //     select new TextileData
+        //     {
+        //         TextileId = t.Id,
+        //         TextileStructure = s.Value,
+        //         TextileColor = c.Value,
+
+                           //need to import csv to database
+                           //EstimatedStature = 
+
+                           //     })
+                           //            .ToList();
+
+                           //    TextileDict.Add(id.Id, TextileInfo);
+
+
+                           //}
+
+
+        int pageSize = 25;
 
         var data = new BurialsViewModel
         {
@@ -76,18 +110,38 @@ public class HomeController : Controller
                           select new BurialPageModel
                           {
                               Id = bm.Id,
-                              TextileDescription = t.Description
+                              Sex = bm.Sex,
+                              TextileDescription = t.Description,
+
+                              //this is how we want it
+
+                              //TextileId = t.Id,
+                              //TextileStructure = s.Value,
+                              //TextileColor = c.Value,
+                              //Sex = bm.Sex,
+                              BurialDepth = bm.Depth,
+                              //Age = bm.Ageatdeath,
+                              //HeadDirection = bm.Headdirection,
+                              //TextileFunction = tf.Value,
+                              BurialId = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
+
+                              //need to import csv to database
+                              //EstimatedStature = 
                           })
-                    .OrderBy(b => b.Id)
+                    
                     .ToList(),
 
-        PageInfo = new PageInfo
+            PageInfo = new PageInfo
             {
                 TotalNumBurial = _repo.burialdata.Count(),
                 BurialsPerPage = pageSize,
                 CurrentPage = pageNum
-            }
-        };
+            },
+
+            //TextileDict = TextileDict,
+            //BurialIds = _repo.burialdata.OrderBy(p => p.Id).ToList()
+
+    };
 
         return View(data);
     }
@@ -115,6 +169,34 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    public IActionResult BurialDetails(long Id)
+    {
+        var DetailsData = new BurialDetailsViewModel
+        {
+            Details = (from t in _repo.textiles
+                       join bmt in _repo.burialmaintextiles
+                       on t.Id equals bmt.MainTextileid
+                       join bm in _repo.burialdata
+                       on bmt.MainBurialmainid equals bm.Id
+                       where bm.Id == Id
+                       select new BurialDetailsPageModel
+                       {
+                           TextileDescription = t.Description,
+                       })
+
+                    .ToList(),
+            Burialmains = (from bm in _repo.burialdata
+                           where bm.Id == Id
+                           select new BurialDetailsPageModel
+                           {
+                               BurialId = bm.Id,
+                           })
+                           .ToList()
+
+        };
+    return View(DetailsData);
+}
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
