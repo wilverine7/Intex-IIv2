@@ -46,18 +46,14 @@ public class HomeController : Controller
                 .Take(pageSize),
 
 
-                burialInfo = (from t in _repo.textiles
-                              join bmt in _repo.burialmaintextiles
-                              on t.Id equals bmt.MainTextileid
-                              join bm in _repo.burialdata
-                              on bmt.MainBurialmainid equals bm.Id
+                burialInfo = (from bm in _repo.burialdata
                               where ((bm.Sex == Sex || Sex == null) && (bm.Depth == Depth || Depth == null))
                               orderby bm.Id
                               select new BurialPageModel
                               {
                                   Id = bm.Id,
                                   Sex = bm.Sex,
-                                  TextileDescription = t.Description,
+                                  //TextileDescription = t.Description,
 
                                   //this is how we want it
 
@@ -90,7 +86,7 @@ public class HomeController : Controller
             };
             return View(data);
         
-     }
+      }
 
 
     ////////////////////
