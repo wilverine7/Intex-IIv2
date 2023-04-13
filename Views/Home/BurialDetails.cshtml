@@ -1,6 +1,5 @@
 @{
 }
-
 @model BurialDetailsViewModel
 <div>
     @foreach (var b in Model.Burialmains)
@@ -11,9 +10,15 @@
     @foreach (var b in Model.CompositeId)
     {
         <p>@b.CompKey</p>
-        if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
-        {
-            <p>@Model.KeyDictionary.Images[b.CompKey]</p>
+            if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
+            {
+                for (int i = 0; i < Model.KeyDictionary.Images[b.CompKey].Count; i++)
+                    {
+                        <img style="display:inline-block;margin-right:10px" src=".../wwwroot/img/@Model.KeyDictionary.Images[b.CompKey][i]" alt="Burial Image" width="250">
+                        @*<p>@Model.KeyDictionary.Images[b.CompKey][i]</p>*@
+                    }
+
+            @*<p>@Model.KeyDictionary.Images[b.CompKey]</p>*@
         }
     }
 
