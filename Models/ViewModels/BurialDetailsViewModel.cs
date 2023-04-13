@@ -11,6 +11,8 @@ namespace Mummies.Models.ViewModels
 
         public List<BurialDetailsPageModel> Details { get; set; }
 
+        public List<BurialDetailsPageModel> PhotoData { get; set; }
+
 
     }
 }

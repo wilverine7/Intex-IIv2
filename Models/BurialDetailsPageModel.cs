@@ -5,6 +5,7 @@ namespace Mummies.Models
 	{
 		public string TextileDescription { get; set; }
 		public long BurialId { get; set; }
+		public string PhotoUrl { get; set; }
 
     }
 }

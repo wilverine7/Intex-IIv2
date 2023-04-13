@@ -26,6 +26,10 @@ namespace Mummies.Models.Repo
         public IQueryable<Textilefunction> textilefunctions => _context.Textilefunctions;
 
         public IQueryable<TextilefunctionTextile> textilefunctiontextiles => _context.TextilefunctionTextiles;
+        public IQueryable<PhotodataTextile> photodatatextiles => _context.PhotodataTextiles;
+        public IQueryable<Photodatum> photodata => _context.Photodata;
+
+
 
 
 

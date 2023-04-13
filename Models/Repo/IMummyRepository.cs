@@ -17,8 +17,12 @@ namespace Mummies.Models.Repo
         IQueryable<Textilefunction> textilefunctions { get; }
 
         IQueryable<TextilefunctionTextile> textilefunctiontextiles { get; }
+        IQueryable<PhotodataTextile> photodatatextiles { get; }
+        IQueryable<Photodatum> photodata { get; }
 
-        
+
+
+
 
 
 
