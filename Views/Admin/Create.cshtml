@@ -6,41 +6,43 @@
 <h1>Create a Record</h1>
 
 <div>
-    <form method="post">
-        <input asp-for="Id" type="hidden" value=""/><br />
+    <form method="post" asp-controller="Admin" asp-action="Create">
 
         <label asp-for="Burialid">Burialid: </label>
-        <input asp-for="Burialid" type="text" /><br />
+        <input asp-for="Burialid" type="number" /><br />
 
-        <label asp-for="Sex">Sex: </label>
-        <input type="radio" /><br />
+        <label>Sex: </label>
+        <input asp-for="Sex" type="radio" value="M" />
+        <label asp-for="Sex">Male</label>
+        <input asp-for="Sex" type="radio" value="F" />
+        <label asp-for="Sex">Female</label><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Depth">Depth: </label>
+        <input asp-for="Depth" type="text" /><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Length">Length: </label>
+        <input asp-for="Length" type="text" /><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Ageatdeath">Age at Death: </label>
+        <input asp-for="Ageatdeath" type="text" /><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Dateofexcavation">Date of Excavation: </label>
+        <input asp-for="Dateofexcavation" type="datetime-local" /><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Haircolor">Hair Color: </label>
+        <input asp-for="Haircolor" type="text" /><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Wrapping">Wrapping: </label>
+        <input asp-for="Wrapping" type="text" /><br />
 
-        <label></label>
-        <input /><br />
+        <label asp-for="Text">Notes: </label>
+        <textarea asp-for="Text" rows="5" cols="60" name="text" placeholder="Enter text"></textarea>
 
         <button type="submit">Submit</button>
     </form>
 </div>
 
-public long? Burialid { get; set; }
+@*public long? Burialid { get; set; }
 public string? Sex { get; set; }
 public string? Depth { get; set; }
 public string? Length { get; set; }
@@ -48,7 +50,7 @@ public string? Ageatdeath { get; set; }
 public DateTime? Dateofexcavation { get; set; }
 public string? Text { get; set; }
 public string? Haircolor { get; set; }
-public string? Wrapping { get; set; }
+public string? Wrapping { get; set; }*@
 
 
     @*public string? Squarenorthsouth { get; set; }

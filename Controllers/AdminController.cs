@@ -102,8 +102,7 @@ namespace Mummies.Controllers
         [HttpPost]
         public IActionResult Create(Burialmain create)
         {
-            //_repo.Add(create);
-            //_repo.SaveChanges();
+            _repo.AddBurial(create);
 
             return View("AddConfirmation");
         }

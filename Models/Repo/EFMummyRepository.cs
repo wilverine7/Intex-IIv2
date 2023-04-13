@@ -31,11 +31,6 @@ namespace Mummies.Models.Repo
         public IQueryable<Photodatum> photodata => _context.Photodata;
 
 
-
-
-
-
-
         public void AddBurial(Burialmain burial)
         {
             _context.Burialmains.Add(burial);
