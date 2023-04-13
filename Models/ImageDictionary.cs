@@ -8,7 +8,7 @@ namespace Mummies.Models
 {///////DICTIONARY for IMAGES///////
     public class ImageDictionary
     {
-        Dictionary<string, List<string>> Images = CreateDictionary();
+        public Dictionary<string, List<string>> Images = CreateDictionary();
 
         public static Dictionary<string, List<string>> CreateDictionary()
         {

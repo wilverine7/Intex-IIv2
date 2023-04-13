@@ -13,13 +13,11 @@
     @foreach (var b in Model.CompositeId)
     {
         <p>@b.CompKey</p>
-        @*<p>@Model.KeyDictionary[CompKey]</p>*@
+        if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
+        {
+            <p>@Model.KeyDictionary.Images[b.CompKey]</p>
+        }
     }
-
-    
-
-
-    <p id="abd"></p>
 
     @foreach (var b in Model.PhotoData)
     {
@@ -27,12 +25,4 @@
         <p>@b.TextileDescription</p>
     }
 
-
-
-
 </div>
-
-<script>
-    var Dictionary = @Model.KeyDictionary;
-    document.getElementById('abd').innerHTML(Dictionary[@Model.CompositeId]);
-</script>
