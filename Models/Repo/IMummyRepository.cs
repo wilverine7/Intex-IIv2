@@ -24,7 +24,9 @@ namespace Mummies.Models.Repo
 
 
 
-
+        void AddBurial(Burialmain burial);
+        void UpdateBurial(Burialmain burial);
+        void DeleteBurial(int burialId);
 
     }
 }
