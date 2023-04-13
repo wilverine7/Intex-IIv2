@@ -1,0 +1,34 @@
+@{
+}
+@model BurialDetailsViewModel
+<div>
+    @foreach (var b in Model.Burialmains)
+    {
+        <p>@b.BurialId</p>
+    }
+
+    @foreach (var b in Model.CompositeId)
+    {
+        <p>@b.CompKey</p>
+            if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
+            {
+                for (int i = 0; i < Model.KeyDictionary.Images[b.CompKey].Count; i++)
+                    {
+                        <img style="display:inline-block;margin-right:10px" src=".../wwwroot/img/@Model.KeyDictionary.Images[b.CompKey][i]" alt="Burial Image" width="250">
+                        @*<p>@Model.KeyDictionary.Images[b.CompKey][i]</p>*@
+                    }
+
+            @*<p>@Model.KeyDictionary.Images[b.CompKey]</p>*@
+        }
+    }
+
+    <div style="display:flex; flex-direction:column">
+        @foreach (var b in Model.PhotoData)
+        {
+            <figure style="display:inline-block;">
+                <img style="display:inline-block;margin-right:10px" src="@b.PhotoUrl" alt="Textile Image" width="250">
+                <figcaption style="max-width:500px; word-wrap:break-word; display:inline-block">@b.TextileDescription</figcaption>
+            </figure>
+        }
+    </div>
+</div>
