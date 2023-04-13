@@ -36,14 +36,14 @@ public class HomeController : Controller
     public IActionResult BurialList(string Sex, string HeadDirection, string Depth, int pageNum = 1)
     {
 
-        int pageSize = 25;
+        int pageSize = 20;
 
             var data = new BurialsViewModel
             {
-                Burialmains = _repo.burialdata
-                .OrderBy(p => p.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+                //Burialmains = _repo.burialdata.Where(b => (b.Sex == Sex || b.Sex == null) && (b.Depth == Depth || b.Depth == null))
+                //.OrderBy(p => p.Id)
+                //.Skip((pageNum - 1) * pageSize)
+                //.Take(pageSize),
 
 
                 burialInfo = (from bm in _repo.burialdata
@@ -69,13 +69,13 @@ public class HomeController : Controller
 
                                   //need to import csv to database
                                   //EstimatedStature = 
-                              })
-
-                        .ToList(),
+                              }) 
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize).ToList(),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurial = _repo.burialdata.Count(),
+                    TotalNumBurial = _repo.burialdata.Where(b => (b.Sex == Sex || b.Sex == null) && (b.Depth == Depth || b.Depth == null)).Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
