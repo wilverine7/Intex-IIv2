@@ -9,7 +9,7 @@ namespace Mummies.Models
 		public string Sex { get; set; }
 		public string BurialId { get; set; }
 		public string BurialDepth { get; set; }
-
+		public string Preservation { get; set; }
 
     }
 }

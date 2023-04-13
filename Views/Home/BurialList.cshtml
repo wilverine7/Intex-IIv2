@@ -120,13 +120,15 @@
                 <p class="card-text">Depth: @b.BurialDepth m</p>
             }
             @if (b.Sex == "")
-            {
+                {
                 <p class="card-text">Sex: N/A</p>
-            }
-            else
-            {
+                }
+             else if (b.Sex is null)
+                {<p class="card-text">Sex: N/A</p>}
+             else
+                {
                 <p class="card-text">Sex: @b.Sex</p>
-            }
+                }
             @if (b.TextileDescription == null)
             {
                 <p class="card-text">Textile Description: not available</p>
@@ -139,8 +141,8 @@
 
 
             <form method="post" asp-controller="Home" asp-action="BurialDetails">
-            <input name="Id" id="Id" type="hidden" value=@b.Id />
-            <button type="submit">View More Info</button>
+                <input name="Id" id="Id" type="hidden" value=@b.Id />
+                <button type="submit">View More Info</button>
             </form>
         </div>
     </div>
