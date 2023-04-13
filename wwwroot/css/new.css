@@ -51,6 +51,7 @@ body {
 /* because frameborder attribute of iframe is deprecated */
 iframe {
     border: 0;
+    transform: scale(1.4);
 }
 
 h2 {
