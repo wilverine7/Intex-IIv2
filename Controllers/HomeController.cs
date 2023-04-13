@@ -374,14 +374,15 @@ public class HomeController : Controller
 
                          }).ToList(),
             CompositeId = (from bm in _repo.burialdata
-                          where bm.Id == Id
-                          select new BurialDetailsPageModel
-                          {
-                              CompKey = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
-                          }).ToList()
-
-
-    };
+                           where bm.Id == Id
+                           select new BurialDetailsPageModel
+                           {
+                               CompKey = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
+                           }).ToList(),
+            KeyDictionary = new ImageDictionary(),
+            
+            
+        };
     return View(DetailsData);
 }
 

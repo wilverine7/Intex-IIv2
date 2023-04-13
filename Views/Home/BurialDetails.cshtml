@@ -1,4 +1,4 @@
-﻿@{
+@{
 }
 
 @model BurialDetailsViewModel
@@ -12,14 +12,18 @@
     }
     @foreach (var b in Model.CompositeId)
     {
-        <p>BurialID: @b.CompKey</p>
+        <p>@b.CompKey</p>
+        if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
+        {
+            <p>@Model.KeyDictionary.Images[b.CompKey]</p>
+        }
     }
 
 <div style="display:flex; flex-direction:column">
     @foreach (var b in Model.PhotoData)
     {
         <figure style="display:inline-block;">
-            <img style ="display:inline-block;margin-right:10px"src="@b.PhotoUrl" alt="Textile Image" width="250">
+            <img style="display:inline-block;margin-right:10px" src="@b.PhotoUrl" alt="Textile Image" width="250">
             <figcaption style="max-width:500px; word-wrap:break-word; display:inline-block">@b.TextileDescription</figcaption>
         </figure>
     }

@@ -16,8 +16,7 @@ namespace Mummies.Models.ViewModels
         public List<BurialDetailsPageModel> PhotoData { get; set; }
 
         public List<BurialDetailsPageModel> CompositeId { get; set; }
-
-
+        public ImageDictionary KeyDictionary { get; set; }
 
     }
 }
