@@ -59,14 +59,12 @@ iframe {
     border: 0;
 }
 
-
-
 h2 {
     margin: 0;
 }
 
 .container1 {
-    padding: 0;
+    padding: 0 10px;
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -82,5 +80,3 @@ h2 {
         left: -100%;
     }
 }
-
-
