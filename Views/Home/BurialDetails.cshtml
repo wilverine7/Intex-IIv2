@@ -1,0 +1,22 @@
+﻿@{
+}
+
+@model BurialDetailsViewModel
+<div>
+    @foreach (var b in Model.Burialmains)
+    {
+
+        <p>@b.BurialId</p>
+
+    }
+    @foreach (var b in Model.Details)
+    {
+
+        <p>@b.TextileDescription</p>
+
+    }
+    @foreach (var b in Model.PhotoData)
+{
+            <p>@b.PhotoUrl</p>
+}
+</div>
