@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Fag el-Gamous</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Mummies.styles.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/Mummies.styles.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/css/new.css" />
 </head>
 <body class="mb-0">
@@ -45,8 +45,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted text-center p-3">
-        <div class="container">
+    <footer class="footerCSS">
+        <div class="container" style="text-align:center;">
             &copy; 2023 - Fag el-Gamous - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             <a class="p-3" asp-area="" asp-controller="Admin" asp-action="Crud">Update Records</a>
             <a asp-area="" asp-controller="Admin" asp-action="Users">Manage Users</a>

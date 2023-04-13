@@ -91,3 +91,13 @@ h2 {
   font-size: 24px;
   display: block;
 }
+
+.footerCSS {
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-content:center;
+    position:relative;
+    height:50px;
+    padding-top:15px;
+}
