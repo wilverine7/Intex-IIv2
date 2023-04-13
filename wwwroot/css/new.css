@@ -76,23 +76,33 @@ h2 {
   }
 }
 
-.sidebar {
+.col1 {
   height: 100%;
-  width: 150px;
-  position: absolute;
+  width: 200px;
+/*  position: fixed;*/
   left: 0;
   top: 0;
-  padding-top: 40px;
-  background-color: lightblue;
+  padding-top: 10px;
+  background-color: transparent;
+ 
 }
 
-.sidebar div {
-  padding: 8px;
-  font-size: 24px;
-  display: block;
+.col1 div {
+  padding: 4px;
+  font-size: 15px;
+  display: flex;
+  flex-direction:column;
+
+}
+.col1 h2 {
+    
+    text-align:center;
+    margin-bottom:0px;
+    font-weight:300;
 }
 
 .footerCSS {
+    border-top: 1px solid lightgray;
     display:flex;
     flex-direction:row;
     justify-content:center;
@@ -100,4 +110,32 @@ h2 {
     position:relative;
     height:50px;
     padding-top:15px;
+}
+
+.col1 div label {
+    font-size:15px;
+   
+}
+
+.col1 div select {
+    width:80%;
+    font-size:15px;
+    align-self:center;
+}
+
+.col1 button {
+    width:50%;
+    align-self:center;
+    margin-top:10px;
+}
+
+.col1 div #Depth {
+    width:80%;
+    align-self:center;
+}
+
+.radiobtns div {
+    flex-direction: row;
+    gap: 5px;
+    align-self: center;
 }
