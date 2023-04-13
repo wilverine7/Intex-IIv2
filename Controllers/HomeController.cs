@@ -128,7 +128,7 @@ public class HomeController : Controller
                                   //Age = bm.Ageatdeath,
                                   //HeadDirection = bm.Headdirection,
                                   //TextileFunction = tf.Value,
-                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
+                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth +"/"+ bm.Squareeastwest + bm.Eastwest +"/"+ bm.Area + bm.Burialnumber)
 
                                   //need to import csv to database
                                   //EstimatedStature = 
@@ -180,7 +180,7 @@ public class HomeController : Controller
                                   //Age = bm.Ageatdeath,
                                   //HeadDirection = bm.Headdirection,
                                   //TextileFunction = tf.Value,
-                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
+                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth +"/"+ bm.Squareeastwest + bm.Eastwest +"/"+ bm.Area + bm.Burialnumber)
 
                                   //need to import csv to database
                                   //EstimatedStature = 
@@ -377,7 +377,7 @@ public class HomeController : Controller
                            where bm.Id == Id
                            select new BurialDetailsPageModel
                            {
-                               CompKey = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
+                               CompKey = (bm.Squarenorthsouth + bm.Northsouth +"/"+ bm.Squareeastwest + bm.Eastwest +"/"+ bm.Area + bm.Burialnumber)
                            }).ToList(),
             KeyDictionary = new ImageDictionary(),
             
