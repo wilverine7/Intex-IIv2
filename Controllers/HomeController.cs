@@ -350,7 +350,7 @@ public class HomeController : Controller
                        where bm.Id == Id
                        select new BurialDetailsPageModel
                        {
-                           TextileDescription = t.Description,
+                           TextileDescription = t.Description
 
                        })
 
@@ -359,7 +359,7 @@ public class HomeController : Controller
                            where bm.Id == Id
                            select new BurialDetailsPageModel
                            {
-                               BurialId = bm.Id,
+                               BurialId = bm.Id
                            })
                            .ToList(),
             PhotoData = (from pd in _repo.photodata
@@ -369,10 +369,17 @@ public class HomeController : Controller
                          where bmt.MainBurialmainid == Id
                          select new BurialDetailsPageModel
                          {
-                             PhotoUrl = pd.Url,
-                         }).ToList()
+                             PhotoUrl = pd.Url
+                         }).ToList(),
+            CompositeId = (from bm in _repo.burialdata
+                          where bm.Id == Id
+                          select new BurialDetailsPageModel
+                          {
+                              CompKey = (bm.Squarenorthsouth + bm.Northsouth + bm.Squareeastwest + bm.Eastwest + bm.Area + bm.Burialnumber)
+                          }).ToList()
 
-        };
+
+    };
     return View(DetailsData);
 }
 

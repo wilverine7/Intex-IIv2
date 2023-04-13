@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Mummies.Models.ViewModels
 {
 	public class BurialDetailsViewModel
@@ -12,6 +14,9 @@ namespace Mummies.Models.ViewModels
         public List<BurialDetailsPageModel> Details { get; set; }
 
         public List<BurialDetailsPageModel> PhotoData { get; set; }
+
+        public List<BurialDetailsPageModel> CompositeId { get; set; }
+
 
 
     }
