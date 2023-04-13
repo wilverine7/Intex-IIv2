@@ -8,6 +8,8 @@ namespace Mummies.Models
 {///////DICTIONARY for IMAGES///////
     public class ImageDictionary
     {
+        Dictionary<string, List<string>> Images = CreateDictionary();
+
         public static Dictionary<string, List<string>> CreateDictionary()
         {
             List<string> list1 = new List<string> {"180N/40E/NE3", "180N/40E/NE4", "180N/40E/NE9", "180N/40E/NE6", "180N/40E/NE3",
@@ -67,6 +69,6 @@ namespace Mummies.Models
 
             return ImgDict;
         }
-        Dictionary<string, List<string>> Images = CreateDictionary();
+     
     }
 }

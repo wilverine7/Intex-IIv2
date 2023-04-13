@@ -8,6 +8,8 @@ namespace Mummies.Models
 		public string PhotoUrl { get; set; }
 		public string CompKey { get; set; }
 
+		public Dictionary<string, string> BurialKey {get;set;}
+
     }
 }
 
