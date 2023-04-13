@@ -32,12 +32,6 @@ body {
     text-shadow: 1px 1px 2px black;
 }
 
-.hero-text1 h1 span {
-    color: #fff;
-    mix-blend-mode: difference;
-    /* screen, overlay, multiply, difference... */
-}
-
 .video-background1 {
     background: #000;
     position: absolute;
