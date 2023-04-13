@@ -2,31 +2,105 @@
 }
 @model BurialDetailsViewModel
 <div>
-    @foreach (var b in Model.Burialmains)
-    {
-        <p>@b.BurialId</p>
-    }
-
     @foreach (var b in Model.CompositeId)
     {
-        <p>@b.CompKey</p>
-            if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
+        <p>BurialID: @b.CompKey</p>
+        if (@Model.KeyDictionary.Images.ContainsKey(b.CompKey))
+        {
+            for (int i = 0; i < Model.KeyDictionary.Images[b.CompKey].Count; i++)
             {
-                for (int i = 0; i < Model.KeyDictionary.Images[b.CompKey].Count; i++)
-                    {
-                        <img style="display:inline-block;margin-right:10px" src=".../wwwroot/img/@Model.KeyDictionary.Images[b.CompKey][i]" alt="Burial Image" width="250">
-                        @*<p>@Model.KeyDictionary.Images[b.CompKey][i]</p>*@
-                    }
-
-            @*<p>@Model.KeyDictionary.Images[b.CompKey]</p>*@
+                <img style="display:inline-block;margin-right:10px; border:1px solid black;" src="~/img/@Model.KeyDictionary.Images[b.CompKey][i]" alt="Burial Image" width="250">
+            }
         }
     }
+    @foreach (var b in Model.Burialmains)
+    {<div style="display:flex;flex-direction:row; width:100%; border: 1px solid lightgray; margin-bottom:10px;">
+    <div style="width:50%;margin-left:10px;">
+        <p>@b.BurialId</p>
 
-    <div style="display:flex; flex-direction:column">
+        @if (b.Preservation == "")
+        {<p>Preservation: N/A</p>}
+        else if (b.Preservation is null)
+        {<p>Preservation: N/A</p>}
+        else
+        {<p>Preservation: @b.Preservation</p>}
+
+        @if (b.Depth == "")
+        {<p>Depth: N/A</p>}
+        else if (b.Depth is null)
+        {<p>Depth: N/A</p>}
+        else
+        {<p>Depth: @b.Depth</p>}
+
+        @if (b.Facebundles == "")
+        {<p>Facebundles: N/A</p>}
+        else if (b.Facebundles is null)
+        {<p>Facebundles: N/A</p>}
+        else
+        {<p>Facebundles: @b.Facebundles</p>}
+
+        @if (b.Goods == "")
+        {<p>Goods: N/A</p>}
+        else if (b.Goods is null)
+        {<p>Goods: N/A</p>}
+        else
+        {<p>Goods: @b.Goods</p>}
+
+        @if (b.Text == "")
+        {<p>Text: N/A</p>}
+        else if (b.Text is null)
+        {<p>Text: N/A</p>}
+        else
+        {<p style="max-width:921px;">Text: @b.Text</p>}
+    </div>
+    <div>
+        @if (b.Wrapping == "")
+        {<p>Wrapping: N/A</p>}
+        else if (b.Wrapping is null)
+        {<p>Wrapping: N/A</p>}
+        else
+        {<p>Wrapping: @b.Wrapping</p>}
+
+        @if (b.HairColor == "")
+        {<p>Hair Color: N/A</p>}
+        else if (b.HairColor is null)
+        {<p>Hair Color: N/A</p>}
+        else
+        {<p>Hair Color: @b.HairColor</p>}
+
+        @if (b.SamplesCollected == "")
+        {<p>Samples Collected: N/A</p>}
+        else if (b.SamplesCollected is null)
+        {<p>Samples Collected: N/A</p>}
+        else
+        {<p>Samples Collected: @b.SamplesCollected</p>}
+
+        @if (b.Length == "")
+        {<p>Length: N/A</p>}
+        else if (b.Length is null)
+        {<p>Length: N/A</p>}
+        else
+        {<p>Length: @b.Length</p>}
+
+        @if (b.AgeatDeath == "")
+        {<p>Age at Death: N/A</p>}
+        else if (b.AgeatDeath is null)
+        {<p>Age at Death: N/A</p>}
+        else
+        {<p>Age at Death: @b.AgeatDeath</p>}
+    </div>
+</div>
+    }
+
+
+
+
+
+    <div style="display:flex; flex-direction:row;flex-wrap:wrap;">
         @foreach (var b in Model.PhotoData)
         {
             <figure style="display:inline-block;">
-                <img style="display:inline-block;margin-right:10px" src="@b.PhotoUrl" alt="Textile Image" width="250">
+                <img style="display:inline-block;margin-right:10px; border:1px solid black;" src="@b.PhotoUrl" alt="Textile Image" width="250">
                 <figcaption style="max-width:500px; word-wrap:break-word; display:inline-block">@b.TextileDescription</figcaption>
             </figure>
         }

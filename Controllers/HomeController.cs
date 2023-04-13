@@ -56,7 +56,7 @@ public class HomeController : Controller
                                   //TextileDescription = t.Description,
 
                                   //this is how we want it
-
+                                  //Preservation = bm.Preservation,
                                   //TextileId = t.Id,
                                   //TextileStructure = s.Value,
                                   //TextileColor = c.Value,
@@ -134,8 +134,28 @@ public class HomeController : Controller
                            where bm.Id == Id
                            select new BurialDetailsPageModel
                            {
-                               BurialId = bm.Id
+                               BurialId = bm.Id,
+                               Preservation = bm.Preservation,
+                               Depth = bm.Depth,
+                               Facebundles = bm.Facebundles,
+                               Goods = bm.Goods,
+                               Text = bm.Text,
+                               Wrapping = bm.Wrapping,
+                               HairColor = bm.Haircolor,
+                               SamplesCollected = bm.Samplescollected,
+                               Length = bm.Length,
+                               AgeatDeath = bm.Ageatdeath
                            })
+                           .ToList(),
+            DirectionData = (from bm in _repo.burialdata
+                             where bm.Id == Id
+                             select new BurialDetailsPageModel
+                             {
+                                 SouthtoHead = bm.Southtohead,
+                                 WesttoHead = bm.Westtohead,
+                                 SouthtoFeet = bm.Southtofeet,
+                                 WesttoFeet = bm.Southtofeet
+                             })
                            .ToList(),
             PhotoData = (from pd in _repo.photodata
                          join pdt in _repo.photodatatextiles on pd.Id equals pdt.MainPhotodataid
@@ -156,7 +176,8 @@ public class HomeController : Controller
                            }).ToList(),
             KeyDictionary = new ImageDictionary(),
             
-            
+
+
         };
     return View(DetailsData);
 }
