@@ -15,6 +15,7 @@ using Mummies.Models.ViewModels;
 
 namespace Mummies.Controllers
 {
+    [Authorize(Policy = "RequireResearcherRole")]
     public class AdminController : Controller
     {
         private readonly ILogger<AdminController> _logger;
