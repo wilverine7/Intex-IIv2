@@ -8,11 +8,10 @@
         <h2>Filter</h2>
         <form method="post" asp-controller="Home" asp-action="BurialList" style="display:flex;flex-direction:column;">
 
-            @*Male female Radio button*@
+            @*Male / female Radio button*@
             <div class="radiobtns">
                 <label for="radio">Sex:</label>
                 <div>
-                    
                     <input type="radio" name="sex" id="male" value="M">
                     <label for="male">Male</label>
 
@@ -20,16 +19,7 @@
                     <label for="female">Female</label>
                 </div>
             </div>
-            @*<div>
-                <label for="inlineFormCustomSelect">Sex:</label>
-                <select id="Sex">
-                    <option selected>Choose...</option>
-                    <option id="male" for="male" value="M">Male</option>
-                    <option id="female" for="female" value="F">Female</option>
-                    <option id="N/A"formaction ="N/A" value="N/A">N/A</option>
-                </select>
-            </div>*@
-
+            
             @*Hair Color*@
             <div>
                 <label for="inlineFormCustomSelect">Hair Color:</label>
