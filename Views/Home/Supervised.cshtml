@@ -174,66 +174,79 @@
         </script>
     </head>
     <body>
-        <h1>Predictive Analysis</h1>
-        <div>
-            <fieldset>
-                <legend>Input Mummy Data Here</legend>
-                <form onsubmit="APIController(); return false;">
-                    <label>Enter burial depth in meters:</label>
-                    <br />
-                    <input type="number" id="depth" value="0" min="0" step="0.1"/>
-                    <br />
-                    <label>Enter mummy length in meters:</label>
-                    <br />
-                    <input type="number" id="length" value="0" min="0" step="0.1"/>
-                    <br />
-                    <label>Mummy Gender:</label>
-                    <br />
-                    <select id="listGender">
-                        <option value="M">Male</option>
-                        <option value="F">Female</option>
-                        <option value="U">Unknown</option>
-                    </select>
-                    <br />
-                    <label>Face wrappings?</label>
-                    <br />
-                    <input type="radio" id="rbTrue" name="wraps" value="True"/>
-                    <label for="rbTrue">Yes</label><br />
-                    <input type="radio" id="rbFalse" name="wraps" value="False"/>
-                    <label for="rbFalse">No</label>
-                    <br />
-                    <label>Goods with the mummy?</label>
-                    <br />
-                    <input type="radio" id="rbYes" name="goods" value="Yes"/>
-                    <label for="rbYes">Yes</label><br />
-                    <input type="radio" id="rbNo" name="goods" value="No"/>
-                    <label for="rbNo">No</label>
-                    <br />
-                    <label>Burial Wrapping Status:</label>
-                    <br />
-                    <select id="wrappings">
-                        <option value="Full">Full/Nearly Full</option>
-                        <option value="Partial">Partial Wrappings</option>
-                        <option value="Wraps">Wrapping Remnants/Bones</option>
-                        <option value="Unknown">Unknown</option>
-                    </select>
-                    <br />
-                    <label>Age at Death:</label>
-                    <br />
-                    <select id="death">
-                        <option value="Adult">Adult</option>
-                        <option value="Child">Child</option>
-                        <option value="Infant">Infant</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <br />
-                    <br />
-                    <button type="submit" class="btn btn-primary">Submit!</button>
+        <h1 style="text-align:center;">Predictive Analysis</h1>
+        <div style="width: 500px; align-self: center; align-items: center; display: flex; justify-content: center; flex-direction: column;">
+            <fieldset style="width:500px">
+                <legend style="text-align:center;">Input Mummy Data Here</legend>
+                <form onsubmit="APIController(); return false;" style="display:flex;flex-direction:column;">
+                    <div class="form-group">
+                        <label>Enter burial depth in meters:</label>
+                        <br />
+                        <input type="number" id="depth" value="0" min="0" step="0.1" />
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Enter mummy length in meters:</label>
+                        <br />
+                        <input type="number" id="length" value="0" min="0" step="0.1"/>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Mummy Gender:</label>
+                        <br />
+                        <select id="listGender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="U">Unknown</option>
+                        </select>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Face wrappings?</label>
+                        <br />
+                        <input type="radio" id="rbTrue" name="wraps" value="True"/>
+                        <label for="rbTrue">Yes</label><br />
+                        <input type="radio" id="rbFalse" name="wraps" value="False"/>
+                        <label for="rbFalse">No</label>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Goods with the mummy?</label>
+                        <br />
+                        <input type="radio" id="rbYes" name="goods" value="Yes"/>
+                        <label for="rbYes">Yes</label><br />
+                        <input type="radio" id="rbNo" name="goods" value="No"/>
+                        <label for="rbNo">No</label>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Burial Wrapping Status:</label>
+                        <br />
+                        <select id="wrappings">
+                            <option value="Full">Full/Nearly Full</option>
+                            <option value="Partial">Partial Wrappings</option>
+                            <option value="Wraps">Wrapping Remnants/Bones</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Age at Death:</label>
+                        <br />
+                        <select id="death">
+                            <option value="Adult">Adult</option>
+                            <option value="Child">Child</option>
+                            <option value="Infant">Infant</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <br />
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px;align-self:center;">Submit!</button>
                 </form>
             </fieldset>
             <br />
         <div>
-            Your mummy's predicted head direction is: <h3 id="response"></h3>
+            Your mummy's predicted head direction is: <h3 id="response" style="text-align:center"></h3>
         </div>
         </div>
 </body>
