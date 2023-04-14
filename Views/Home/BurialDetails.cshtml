@@ -53,42 +53,49 @@
         else
         {<p style="max-width:921px;">Text: @b.Text</p>}
     </div>
-    <div style="width:33%">
-        @if (b.Wrapping == "")
-        {<p>Wrapping: N/A</p>}
-        else if (b.Wrapping is null)
-        {<p>Wrapping: N/A</p>}
-        else
-        {<p>Wrapping: @b.Wrapping</p>}
+     <div style="width:33%">
+         @if (b.Sex == "")
+         {<p>Sex: N/A</p>}
+         else if (b.Sex is null)
+         {<p>Sex: N/A</p>}
+         else
+         {<p>Sex: @b.Sex</p>}
 
-        @if (b.HairColor == "")
-        {<p>Hair Color: N/A</p>}
-        else if (b.HairColor is null)
-        {<p>Hair Color: N/A</p>}
-        else
-        {<p>Hair Color: @b.HairColor</p>}
+         @if (b.Wrapping == "")
+         {<p>Wrapping: N/A</p>}
+         else if (b.Wrapping is null)
+         {<p>Wrapping: N/A</p>}
+         else
+         {<p>Wrapping: @b.Wrapping</p>}
 
-        @if (b.SamplesCollected == "")
-        {<p>Samples Collected: N/A</p>}
-        else if (b.SamplesCollected is null)
-        {<p>Samples Collected: N/A</p>}
-        else
-        {<p>Samples Collected: @b.SamplesCollected</p>}
+         @if (b.HairColor == "")
+         {<p>Hair Color: N/A</p>}
+         else if (b.HairColor is null)
+         {<p>Hair Color: N/A</p>}
+         else
+         {<p>Hair Color: @b.HairColor</p>}
 
-        @if (b.Length == "")
-        {<p>Length: N/A</p>}
-        else if (b.Length is null)
-        {<p>Length: N/A</p>}
-        else
-        {<p>Length: @b.Length</p>}
+         @if (b.SamplesCollected == "")
+         {<p>Samples Collected: N/A</p>}
+         else if (b.SamplesCollected is null)
+         {<p>Samples Collected: N/A</p>}
+         else
+         {<p>Samples Collected: @b.SamplesCollected</p>}
 
-        @if (b.AgeatDeath == "")
-        {<p>Age at Death: N/A</p>}
-        else if (b.AgeatDeath is null)
-        {<p>Age at Death: N/A</p>}
-        else
-        {<p>Age at Death: @b.AgeatDeath</p>}
-    </div>
+         @if (b.Length == "")
+         {<p>Length: N/A</p>}
+         else if (b.Length is null)
+         {<p>Length: N/A</p>}
+         else
+         {<p>Length: @b.Length</p>}
+
+         @if (b.AgeatDeath == "")
+         {<p>Age at Death: N/A</p>}
+         else if (b.AgeatDeath is null)
+         {<p>Age at Death: N/A</p>}
+         else
+         {<p>Age at Death: @b.AgeatDeath</p>}
+     </div>
 
     }
     <div>

@@ -135,6 +135,7 @@ public class HomeController : Controller
                            select new BurialDetailsPageModel
                            {
                                BurialId = bm.Id,
+                               Sex = bm.Sex,
                                Preservation = bm.Preservation,
                                Depth = bm.Depth,
                                Facebundles = bm.Facebundles,
