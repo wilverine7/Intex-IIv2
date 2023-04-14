@@ -6,10 +6,26 @@
 <h1>Update a Record</h1>
 
 <div>
-    <form method="post" asp-controller="Admin" asp-action="Update">
+    <form method="post" asp-controller="Admin" asp-action="Edit">
+        <input type="hidden" asp-for="Id" />
 
-        <label asp-for="Burialid">Burialid: </label>
-        <input asp-for="Burialid" type="number" value=""/><br />
+        <label asp-for="Squarenorthsouth">Sqaure North South: </label>
+        <input asp-for="Squarenorthsouth" type="text" /><br />
+
+        <label asp-for="Northsouth">North South: </label>
+        <input asp-for="Northsouth" type="text" /><br />
+
+        <label asp-for="Squareeastwest">Sqaure East West: </label>
+        <input asp-for="Squareeastwest" type="text" /><br />
+
+        <label asp-for="Eastwest">East West: </label>
+        <input asp-for="Eastwest" type="text" /><br />
+
+        <label asp-for="Area">Area: </label>
+        <input asp-for="Area" type="text" /><br />
+
+        <label asp-for="Burialnumber">Burial Number: </label>
+        <input asp-for="Burialnumber" type="text" /><br />
 
         <label>Sex: </label>
         <input asp-for="Sex" type="radio" value="M" />
