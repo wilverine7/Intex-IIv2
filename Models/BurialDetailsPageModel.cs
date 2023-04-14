@@ -11,6 +11,7 @@ namespace Mummies.Models
 		public Dictionary<string, string> BurialKey {get;set;}
 
         public string Depth { get; set; }
+        public string Sex { get; set; }
         public string Facebundles { get; set; }
         public string Goods {get;set;}
         public string Text {get;set;}

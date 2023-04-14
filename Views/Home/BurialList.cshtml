@@ -3,134 +3,182 @@
 }
 @model BurialsViewModel;
 
-<div class="text-center">
-    <h1 class="display-4">Burial List</h1>
-    <p>Each record represents a burial at Fag el-Gamous in Egypt.</p>
-</div>
+<div class="row">
+    <div class="col col1">
+        <h2>Filter</h2>
+        <form method="post" asp-controller="Home" asp-action="BurialList" style="display:flex;flex-direction:column;">
 
-<div class="sidebar">
-    <form method="post" asp-controller="Home" asp-action="BurialList" style="display:flex;flex-direction:row;">
+            @*Male / female Radio button*@
+            <div class="radiobtns">
+                <label for="radio">Sex:</label>
+                <div>
+                    <input type="radio" name="sex" id="male" value="M">
+                    <label for="male">Male</label>
 
-        @*Male female Radio button*@
+                    <input type="radio" name="sex" id="female" value="F">
+                    <label for="female">Female</label>
+                </div>
+            </div>
 
-        <label for="radio" style="display:flex;">Sex</label>
+            @*Hair Color*@
+            <div>
+                <label for="inlineFormCustomSelect">Hair Color:</label>
+                <select id="HairColor" name="Haircolor">
+                    <option selected value="">Choose...</option>
+                    <option value="B">Brown/DarkBrown/LtBrown</option>
+                    <option value="K">Black</option>
+                    <option value="A">Brown-Red</option>
+                    <option value="R">Red/Red-Bl</option>
+                    <option value="D">Blond</option>
+                    <option value="U">Unknown</option>
+                    <option value="N/A">N/A</option>
+                </select>
+            </div>
+
+            @*Textile Color*@
+            @*<div>
+                <label for="inlineFormCustomSelect">Textile Color:</label>
+                <select id="TextileColor">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>*@
+
+            @*Burial Depth*@
+            <div>
+                <label for="Depth">Depth: </label>
+                <input type="text" name="Depth" id="Depth" />
+            </div>
+
+            @*Age at Death*@
+            <div>
+                <label for="inlineFormCustomSelect">Age at Death</label>
+                <select id="TextileColor" name="Age">
+                    <option selected value="">Choose...</option>
+                    <option value="A">Adult</option>
+                    <option value="C">Child</option>
+                    <option value="I">Infant</option>
+                    <option value="B">Baby</option>
+                </select>
+            </div>
+
+            @*Head Direction*@
+            <div>
+                <label for="HeadDirection">Head Direction:</label>
+                <select id="HeadDirection" name="HeadDirection">
+                    <option value="">Choose...</option>
+                    <option value="E">East</option>
+                    <option value="W">West</option>
+                </select>
+            </div>
+
+            @*Facebundles*@
+            <div>
+                <label for="Faceundles">Face Bundles:</label>
+                <select id="FaceBundles" name="FaceBundles">
+                    <option value="">Choose...</option>
+                    <option value="Y">Yes</option>
+                    <option value="">No</option>
+                </select>
+            </div>
+
+            @*Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)*@
         <div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sex" id="male" value="M">
-                <label class="form-check-label" for="male">Male</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sex" id="female" value="F">
-                <label class="form-check-label" for="female">
-                    Female
-                </label>
-            </div>
-        </div>
-
-        @*Hair Color*@
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Hair Color</label>
-            <select class="custom-select mr-sm-2" id="HairColor">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <label for="inlineFormCustomSelect">Burial ID:</label>
+            <label for="inlineFormCustomSelect">SquareNorthSouth:</label>
+            <select id="SquareNorthSouth" name="SquareNorthSouth">
+                <option selected value="">Choose...</option>
+                <option value="150">150</option>
+                <option value="160">160</option>
+                <option value="170">170</option>
+                <option value="180">180</option>
+                <option value="190">190</option>
+                <option value="200">200</option>
             </select>
-        </div>
 
-        @*Textile Color*@
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Textile Color</label>
-            <select class="custom-select mr-sm-2" id="TextileColor">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-
-
-        @*Burial Depth*@
-        <label for="Depth">Depth: </label>
-        <input type="text" name="Depth" id="Depth" />   
-
-        @*Age at Death*@
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Age at Death</label>
-            <select class="custom-select mr-sm-2" id="TextileColor">
-                <option selected>Choose...</option>
-                <option value="A">Adult</option>
-                <option value="C">Child</option>
-                <option value="I">Infant</option>
-                <option value="B">Baby</option>
-
-            </select>
-        </div>
-
-        @*Head Direction*@
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="HeadDirection">Head Direction</label>
-            <select class="custom-select mr-sm-2" id="HeadDirection" name="HeadDirection">
-                <option>Choose...</option>
+            <label for="inlineFormCustomSelect">NorthSouth:</label>
+            <select id="NorthSouth" name="NorthSouth">
+                <option selected value="">Choose...</option>
                 <option value="N">North</option>
-                <option value="E">East</option>
                 <option value="S">South</option>
+
+            </select>
+
+            <label for="inlineFormCustomSelect">SquareEastWest:</label>
+            <select id="SquareEastWest" name="SquareEastWest">
+                <option selected value="">Choose...</option>
+                <option value="">0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+            </select>
+
+            <label for="inlineFormCustomSelect">EastWest:</label>
+            <select id="EastWest" name="EastWest">
+                <option selected value="">Choose...</option>
+                <option value="E">East</option>
                 <option value="W">West</option>
 
             </select>
-        </div>
 
-        @*Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)*@
-        <div class="col-auto my-1">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Burial ID</label>
-            <select class="custom-select mr-sm-2" id="TextileColor">
-                <option selected>Choose...</option>
-                <option value="">SquareNorthSouth</option>
-                <option value="2">NorthSouth</option>
-                <option value="3">SquareEastWest</option>
-                <option value="4">EastWest</option>
-                <option value="5">SquareEastWest</option>
-
+            <label for="inlineFormCustomSelect">Area:</label>
+            <select id="Area" name="Area">
+                <option selected value="">Choose...</option>
+                <option value="SW">SW</option>
+                <option value="NE">NE</option>
+                <option value="NW">NW</option>
+                <option value="SE">SE</option>
+                <option value="NNW">NNW</option>
             </select>
-        </div>
-        @*Textile Function*@
-        <button type="submit" style="width:100px; align-self:center; margin-top:10px;">Filter</button>
-    </form>
+
+            <label for="inlineFormCustomSelect">Burial Number:</label>
+            <input type="text" name="BurialNumber" id="BurialNumber" />
+                
 </div>
 
-
-<div style="width:75vw;align-items:center;display:flex;flex-direction:row;justify-content:center;align-self:center;flex-wrap:wrap;">
-    @foreach (var b in Model.burialInfo)
-    {
-        <div class="card" style="width:250px;">
-            <div class="card-body">
-                <h5 class="card-title">@b.Id</h5>
-                <h6 class="card-subtitle mb-2 text-muted">@b.BurialId</h6>
-                @if (b.BurialDepth == "")
-                {
-                    <p class="card-text">Depth: N/A</p>
-                }
-                else
-                {
-                    <p class="card-text">Depth: @b.BurialDepth m</p>
-                }
-                @if (b.Sex == "")
-                {
-                    <p class="card-text">Sex: N/A</p>
-                }
-                else if (b.Sex is null)
-                {<p class="card-text">Sex: N/A</p>}
-                else
-                {
-                    <p class="card-text">Sex: @b.Sex</p>
-                }
-                <form method="post" asp-controller="Home" asp-action="BurialDetails">
-                    <input name="Id" id="Id" type="hidden" value=@b.Id />
-                    <button type="submit">View More Info</button>
-                </form>
-            </div>
+            @*Textile Function*@
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+    <div class="col-10" style="display:flex;flex-direction:column;">
+        <div class="text-center">
+            <h1 class="display-4">Burial List</h1>
+            <p>Each record represents a burial at Fag el-Gamous in Egypt.</p>
         </div>
-    }
 
-    <div page-model="@Model.PageInfo" page-action="BurialList"></div>
+
+        <div style="width:75vw;align-items:center;display:flex;flex-direction:row;justify-content:center;align-self:center;flex-wrap:wrap;">
+            @foreach (var b in Model.burialInfo)
+            {
+                <div class="card" style="width:250px;">
+                    <div class="card-body">
+                        <h5 class="card-title">@b.Id</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@b.BurialId</h6>
+                        @if (b.Sex == "")
+                        {
+                            <p class="card-text">Sex: N/A</p>
+                        }
+                        else if (b.Sex is null)
+                        {<p class="card-text">Sex: N/A</p>}
+                        else
+                        {
+                            <p class="card-text">Sex: @b.Sex</p>
+                        }
+                        <form method="post" asp-controller="Home" asp-action="BurialDetails">
+                            <input name="Id" id="Id" type="hidden" value=@b.Id />
+                            <button type="submit">View More Info</button>
+                        </form>
+                    </div>
+                </div>
+            }
+
+            <div page-model="@Model.PageInfo" page-action="BurialList" class="FUN"></div>
+        </div>
+    </div>
 </div>

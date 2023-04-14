@@ -13,95 +13,131 @@
             }
         }
     }
-    @foreach (var b in Model.Burialmains)
-    {<div style="display:flex;flex-direction:row; width:100%; border: 1px solid lightgray; margin-bottom:10px;">
-    <div style="width:50%;margin-left:10px;">
-        <p>@b.BurialId</p>
+    <div style="display:flex;flex-direction:row; width:100%; border: 1px solid lightgray; margin-bottom:10px;">
+        @foreach (var b in Model.Burialmains)
+        {
+            <div style="width:33%;margin-left:10px;">
+                <p>@b.BurialId</p>
 
-        @if (b.Preservation == "")
-        {<p>Preservation: N/A</p>}
-        else if (b.Preservation is null)
-        {<p>Preservation: N/A</p>}
-        else
-        {<p>Preservation: @b.Preservation</p>}
+                @if (b.Preservation == "")
+                {<p>Preservation: N/A</p>}
+                else if (b.Preservation is null)
+                {<p>Preservation: N/A</p>}
+                else
+                {<p>Preservation: @b.Preservation</p>}
 
-        @if (b.Depth == "")
-        {<p>Depth: N/A</p>}
-        else if (b.Depth is null)
-        {<p>Depth: N/A</p>}
-        else
-        {<p>Depth: @b.Depth</p>}
+                @if (b.Depth == "")
+                {<p>Depth: N/A</p>}
+                else if (b.Depth is null)
+                {<p>Depth: N/A</p>}
+                else
+                {<p>Depth: @b.Depth</p>}
 
-        @if (b.Facebundles == "")
-        {<p>Facebundles: N/A</p>}
-        else if (b.Facebundles is null)
-        {<p>Facebundles: N/A</p>}
-        else
-        {<p>Facebundles: @b.Facebundles</p>}
+                @if (b.Facebundles == "")
+                {<p>Facebundles: N/A</p>}
+                else if (b.Facebundles is null)
+                {<p>Facebundles: N/A</p>}
+                else
+                {<p>Facebundles: @b.Facebundles</p>}
 
-        @if (b.Goods == "")
-        {<p>Goods: N/A</p>}
-        else if (b.Goods is null)
-        {<p>Goods: N/A</p>}
-        else
-        {<p>Goods: @b.Goods</p>}
+                @if (b.Goods == "")
+                {<p>Goods: N/A</p>}
+                else if (b.Goods is null)
+                {<p>Goods: N/A</p>}
+                else
+                {<p>Goods: @b.Goods</p>}
 
-        @if (b.Text == "")
-        {<p>Text: N/A</p>}
-        else if (b.Text is null)
-        {<p>Text: N/A</p>}
-        else
-        {<p style="max-width:921px;">Text: @b.Text</p>}
+                @if (b.Text == "")
+                {<p>Text: N/A</p>}
+                else if (b.Text is null)
+                {<p>Text: N/A</p>}
+                else
+                {<p style="max-width:430px;">Text: @b.Text</p>}
+            </div>
+             <div style="width:33%">
+                 @if (b.Sex == "")
+                 {<p>Sex: N/A</p>}
+                 else if (b.Sex is null)
+                 {<p>Sex: N/A</p>}
+                 else
+                 {<p>Sex: @b.Sex</p>}
+
+                 @if (b.Wrapping == "")
+                 {<p>Wrapping: N/A</p>}
+                 else if (b.Wrapping is null)
+                 {<p>Wrapping: N/A</p>}
+                 else
+                 {<p>Wrapping: @b.Wrapping</p>}
+
+                 @if (b.HairColor == "")
+                 {<p>Hair Color: N/A</p>}
+                 else if (b.HairColor is null)
+                 {<p>Hair Color: N/A</p>}
+                 else
+                 {<p>Hair Color: @b.HairColor</p>}
+
+                 @if (b.SamplesCollected == "")
+                 {<p>Samples Collected: N/A</p>}
+                 else if (b.SamplesCollected is null)
+                 {<p>Samples Collected: N/A</p>}
+                 else
+                 {<p>Samples Collected: @b.SamplesCollected</p>}
+
+                 @if (b.Length == "")
+                 {<p>Length: N/A</p>}
+                 else if (b.Length is null)
+                 {<p>Length: N/A</p>}
+                 else
+                 {<p>Length: @b.Length</p>}
+
+                 @if (b.AgeatDeath == "")
+                 {<p>Age at Death: N/A</p>}
+                 else if (b.AgeatDeath is null)
+                 {<p>Age at Death: N/A</p>}
+                 else
+                 {<p>Age at Death: @b.AgeatDeath</p>}
+             </div>
+
+        }
+            <div>
+                @foreach (var b in Model.DirectionData)
+                {
+                    @if (b.SouthtoHead == "")
+                    {<p>South to Head: N/A</p>}
+                    else if (b.SouthtoHead is null)
+                    {<p>South to Head: N/A</p>}
+                    else
+                    {<p>South to Head: @b.SouthtoHead</p>}
+
+                    @if (b.WesttoHead == "")
+                    {<p>West to Head: N/A</p>}
+                    else if (b.WesttoHead is null)
+                    {<p>West to Head: N/A</p>}
+                    else
+                    {<p>West to Head: @b.WesttoHead</p>}
+
+                    @if (b.SouthtoFeet == "")
+                    {<p>South to Feet: N/A</p>}
+                    else if (b.SouthtoFeet is null)
+                    {<p>South to Feet: N/A</p>}
+                    else
+                    {<p>South to Feet: @b.SouthtoFeet</p>}
+
+                    @if (b.WesttoFeet == "")
+                    {<p>West to Feet: N/A</p>}
+                    else if (b.WesttoFeet is null)
+                    {<p>West to Feet: N/A</p>}
+                    else
+                    {<p>West to Feet: @b.WesttoFeet</p>}
+                }
+            </div>
     </div>
-    <div>
-        @if (b.Wrapping == "")
-        {<p>Wrapping: N/A</p>}
-        else if (b.Wrapping is null)
-        {<p>Wrapping: N/A</p>}
-        else
-        {<p>Wrapping: @b.Wrapping</p>}
-
-        @if (b.HairColor == "")
-        {<p>Hair Color: N/A</p>}
-        else if (b.HairColor is null)
-        {<p>Hair Color: N/A</p>}
-        else
-        {<p>Hair Color: @b.HairColor</p>}
-
-        @if (b.SamplesCollected == "")
-        {<p>Samples Collected: N/A</p>}
-        else if (b.SamplesCollected is null)
-        {<p>Samples Collected: N/A</p>}
-        else
-        {<p>Samples Collected: @b.SamplesCollected</p>}
-
-        @if (b.Length == "")
-        {<p>Length: N/A</p>}
-        else if (b.Length is null)
-        {<p>Length: N/A</p>}
-        else
-        {<p>Length: @b.Length</p>}
-
-        @if (b.AgeatDeath == "")
-        {<p>Age at Death: N/A</p>}
-        else if (b.AgeatDeath is null)
-        {<p>Age at Death: N/A</p>}
-        else
-        {<p>Age at Death: @b.AgeatDeath</p>}
-    </div>
-</div>
-    }
-
-
-
-
-
     <div style="display:flex; flex-direction:row;flex-wrap:wrap;">
         @foreach (var b in Model.PhotoData)
         {
             <figure style="display:inline-block;">
                 <img style="display:inline-block;margin-right:10px; border:1px solid black;" src="@b.PhotoUrl" alt="Textile Image" width="250">
-                <figcaption style="max-width:500px; word-wrap:break-word; display:inline-block">@b.TextileDescription</figcaption>
+                <figcaption style="max-width:400px; word-wrap:break-word; display:inline-block">@b.TextileDescription</figcaption>
             </figure>
         }
     </div>

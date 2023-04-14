@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Mummies.Data;
+using Microsoft.ML.OnnxRuntime;
 using Mummies.Models;
 using Mummies.Models.Repo;
 using static System.Net.Mime.MediaTypeNames;
@@ -27,6 +29,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
 //builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddSingleton<InferenceSession>(
+  new InferenceSession("soup/Ab$oluteDemolitionN0Survivors.onnx")
+);
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -126,6 +132,3 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
-
-
-
