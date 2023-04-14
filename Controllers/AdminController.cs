@@ -106,61 +106,67 @@ namespace Mummies.Controllers
         ////////////////////
         /////   CRUD
         ////////////////////
-        public IActionResult Crud(int pageNum = 1)
+        public IActionResult Crud(string BurialNumber, string FaceBundles, string Age, string Haircolor, string Sex, string HeadDirection, string Depth, string SquareNorthSouth, string SquareEastWest, string EastWest, string NorthSouth, string Area, int pageNum = 1)
         {
-            int pageSize = 1;
-            //ViewBag.burialmain = from burialdata in _repo.burialdata
-            //                     join burialmaintextiles in _repo.burialmaintextiles
-            //                     on burialdata.Id equals burialmaintextiles.MainBurialmainid
-            //                     select "*".ToList();
 
-            //var BurialId = _repo.burialdata
-            //    .OrderBy(p => p.Id).ToList();
-            //var TextileId = _repo.burialmaintextiles.OrderBy(p => p.MainBurialmainid).ToList();
-
-            //var burialInfo = (from t in _repo.textiles
-            //            join bmt in _repo.burialmaintextiles
-            //            on t.Id equals bmt.MainTextileid
-            //            join bm in _repo.burialdata
-            //            on bmt.MainBurialmainid equals bm.Id
-            //            select new BurialPageModel
-            //            {
-            //                Id = bm.Id,
-            //                TextileDescription = t.Description
-            //            })
-            //            .OrderBy(b => b.Id)
-            //            .ToList();
-
+            int pageSize = 20;
 
 
             var data = new BurialsViewModel
             {
-                Burialmains = _repo.burialdata
-                .OrderBy(p => p.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+                burialInfo = (from bm in _repo.burialdata
+                              where ((bm.Sex == Sex || Sex == null || Sex == "")
+                              && (bm.Depth == Depth || Depth == null)
+                              && (bm.Haircolor == Haircolor || Haircolor == null || Haircolor == "")
+                              && (bm.Ageatdeath == Age || Age == null || Age == "")
+                              && (bm.Headdirection == HeadDirection || HeadDirection == null || HeadDirection == "")
+                              && (bm.Facebundles == FaceBundles || FaceBundles == null || FaceBundles == "")
+                              && (bm.Squareeastwest == SquareEastWest || SquareEastWest == null || SquareEastWest == "")
+                              && (bm.Eastwest == EastWest || EastWest == null || EastWest == "")
+                              && (bm.Squarenorthsouth == SquareNorthSouth || SquareNorthSouth == null || SquareNorthSouth == "")
+                              && (bm.Northsouth == NorthSouth || NorthSouth == null || NorthSouth == "")
+                              && (bm.Area == Area || Area == null || Area == "")
+                              && (bm.Burialnumber == BurialNumber || BurialNumber == null || BurialNumber == "")
+                              )
 
-                burialInfo = (from t in _repo.textiles
-                              join bmt in _repo.burialmaintextiles
-                              on t.Id equals bmt.MainTextileid
-                              join bm in _repo.burialdata
-                              on bmt.MainBurialmainid equals bm.Id
+                              //orderby bm.Id
                               select new BurialPageModel
                               {
                                   Id = bm.Id,
-                                  TextileDescription = t.Description
+                                  Sex = bm.Sex,
+                                  Haircolor = bm.Haircolor,
+                                  BurialDepth = bm.Depth,
+                                  Age = bm.Ageatdeath,
+                                  HeadDirection = bm.Headdirection,
+                                  //TextileFunction = tf.Value,
+                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth + "/" + bm.Squareeastwest + bm.Eastwest + "/" + bm.Area + bm.Burialnumber),
+                                  FaceBundles = bm.Facebundles,
+                                  //need to import csv to database
+                                  //EstimatedStature = 
                               })
-                        .OrderBy(b => b.Id)
-                        .ToList(),
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize).ToList(),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurial = _repo.burialdata.Count(),
+                    TotalNumBurial = _repo.burialdata.Where(b => ((b.Sex == Sex || Sex == null || Sex == "")
+                              && (b.Depth == Depth || Depth == null)
+                              && (b.Haircolor == Haircolor || Haircolor == null || Haircolor == "")
+                              && (b.Ageatdeath == Age || Age == null || Age == "")
+                              && (b.Headdirection == HeadDirection || HeadDirection == null || HeadDirection == "")
+                              && (b.Facebundles == FaceBundles || FaceBundles == null || FaceBundles == "")
+                              && (b.Squareeastwest == SquareEastWest || SquareEastWest == null || SquareEastWest == "")
+                              && (b.Eastwest == EastWest || EastWest == null || EastWest == "")
+                              && (b.Squarenorthsouth == SquareNorthSouth || SquareNorthSouth == null || SquareNorthSouth == "")
+                              && (b.Northsouth == NorthSouth || NorthSouth == null || NorthSouth == "")
+                              && (b.Area == Area || Area == null || Area == "")
+                              && (b.Burialnumber == BurialNumber || BurialNumber == null || BurialNumber == ""))).Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
-            };
 
+
+            };
             return View(data);
         }
 
@@ -182,6 +188,42 @@ namespace Mummies.Controllers
         public IActionResult AddConfirmation()
         {
             return View();
+        }
+
+        ////////////////////
+        /////   UPDATE
+        ////////////////////
+        [HttpGet]
+        public IActionResult Edit(long burialid)
+        {
+            var burial = _repo.GetBurial(burialid);
+
+            return View(burial);
+        }
+        [HttpPost]
+        public IActionResult Edit(Burialmain Edit)
+        {
+            _repo.UpdateBurial(Edit);
+
+            return RedirectToAction("Crud");
+        }
+
+        ////////////////////
+        /////   DELETE
+        ////////////////////
+        [HttpGet]
+        public IActionResult Delete(long burialid)
+        {
+            var burial = _repo.GetBurial(burialid);
+
+            return View(burial);
+        }
+        [HttpPost]
+        public IActionResult Delete(Burialmain delete)
+        {
+            _repo.DeleteBurial(delete);
+
+            return RedirectToAction("Crud");
         }
     }
 }

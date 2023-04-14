@@ -14,7 +14,6 @@
     <None Remove="Models\ExtraModels\" />
     <None Remove="Models\Infastructure\" />
     <None Remove="Models\ViewModels\" />
-    <None Remove="Views\Identity\" />
     <None Remove="Models\MachineLearningModel\" />
     <None Remove="Models\Users\" />
   </ItemGroup>
@@ -43,7 +42,6 @@
     <Folder Include="Models\ExtraModels\" />
     <Folder Include="Models\Infastructure\" />
     <Folder Include="Models\ViewModels\" />
-    <Folder Include="Views\Identity\" />
     <Folder Include="Models\MachineLearningModel\" />
     <Folder Include="Models\Users\" />
   </ItemGroup>

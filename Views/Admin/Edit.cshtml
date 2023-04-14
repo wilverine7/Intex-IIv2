@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 @model Burialmain
 
-<h1>Create a Record</h1>
+<h1>Update a Record</h1>
 
 <div>
-    <form method="post" asp-controller="Admin" asp-action="Create">
-        <input asp-for="Id" type="hidden"/>
+    <form method="post" asp-controller="Admin" asp-action="Edit">
+        <input type="hidden" asp-for="Id" />
 
-        <label asp-for="Squarenorthsouth">Square North South: </label>
+        <label asp-for="Squarenorthsouth">Sqaure North South: </label>
         <input asp-for="Squarenorthsouth" type="text" /><br />
 
         <label asp-for="Northsouth">North South: </label>
@@ -59,17 +59,17 @@
 </div>
 
 @*public long? Burialid { get; set; }
-public string? Sex { get; set; }
-public string? Depth { get; set; }
-public string? Length { get; set; }
-public string? Ageatdeath { get; set; }
-public DateTime? Dateofexcavation { get; set; }
-public string? Text { get; set; }
-public string? Haircolor { get; set; }
-public string? Wrapping { get; set; }*@
+    public string? Sex { get; set; }
+    public string? Depth { get; set; }
+    public string? Length { get; set; }
+    public string? Ageatdeath { get; set; }
+    public DateTime? Dateofexcavation { get; set; }
+    public string? Text { get; set; }
+    public string? Haircolor { get; set; }
+    public string? Wrapping { get; set; }*@
 
 
-    @*public string? Squarenorthsouth { get; set; }
+@*public string? Squarenorthsouth { get; set; }
 
     public string? Headdirection { get; set; }
 
