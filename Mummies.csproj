@@ -16,6 +16,7 @@
     <None Remove="Models\ViewModels\" />
     <None Remove="Views\Identity\" />
     <None Remove="Models\MachineLearningModel\" />
+    <None Remove="Models\Users\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.4" />
@@ -42,5 +43,6 @@
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Identity\" />
     <Folder Include="Models\MachineLearningModel\" />
+    <Folder Include="Models\Users\" />
   </ItemGroup>
 </Project>

@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Mummies.Data;
 using Mummies.Models;
 using Mummies.Models.Repo;
+using Mummies.Models.Users;
 using Mummies.Models.ViewModels;
 
 namespace Mummies.Controllers
@@ -16,10 +21,14 @@ namespace Mummies.Controllers
 
         private IMummyRepository _repo;
 
-        public AdminController(ILogger<AdminController> logger, IMummyRepository temp)
+        private ApplicationDbContext context;
+
+
+        public AdminController(ILogger<AdminController> logger, ApplicationDbContext temp, IMummyRepository _temp)
         {
             _logger = logger;
-            _repo = temp;
+            context = temp;
+            _repo = _temp;
 
         }
 
@@ -30,7 +39,23 @@ namespace Mummies.Controllers
         [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Users()
         {
-            return View();
+
+            var UserJoin = (from u in context.Users
+                            join link in context.UserRoles
+                            on u.Id equals link.UserId
+                            join r in context.Roles
+                            on link.RoleId equals r.Id
+                            select new UserPageViewModel
+                            {
+                                UserRole = r.Name,
+                                UserName = u.UserName,
+                                UserId = u.Id
+                            })
+                       .ToList();
+                
+            
+
+            return View(UserJoin);
         }
 
         ////////////////////
