@@ -210,12 +210,9 @@ namespace Mummies.Controllers
             return View(burial);
         }
         [HttpPost]
-        public IActionResult Delete(long delete, bool confirm)
+        public IActionResult Delete(Burialmain delete)
         {
-            if (confirm)
-            {
-                _repo.DeleteBurial(delete);
-            }
+            _repo.DeleteBurial(delete);
 
             return RedirectToAction("Crud");
         }

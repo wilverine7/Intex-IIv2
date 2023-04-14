@@ -45,9 +45,8 @@ namespace Mummies.Models.Repo
             _context.SaveChanges();
         }
 
-        public void DeleteBurial(long burialId)
+        public void DeleteBurial(Burialmain burial)
         {
-            var burial = _context.Burialmains.Find(burialId);
             _context.Burialmains.Remove(burial);
             _context.SaveChanges();
         }
