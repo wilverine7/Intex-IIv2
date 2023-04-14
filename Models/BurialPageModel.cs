@@ -3,7 +3,6 @@ namespace Mummies.Models
 {
 	public class BurialPageModel
 	{
-		
 		public long Id { get; set; }
 		public string TextileDescription { get; set; }
 		public string Sex { get; set; }
@@ -20,8 +19,6 @@ namespace Mummies.Models
 		public string EastWest { get; set; }
 		public string Area { get; set; }
 		public string BurialNumber { get; set; }
-
-
     }
 }
 
