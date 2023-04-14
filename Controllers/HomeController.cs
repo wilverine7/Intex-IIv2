@@ -33,60 +33,152 @@ public class HomeController : Controller
     ////////////////////
     /////   BURIAL LIST
     ////////////////////
-    public IActionResult BurialList(string Sex, string HeadDirection, string Depth, int pageNum = 1)
+    public IActionResult BurialList( string BurialNumber, string FaceBundles,string Age, string Haircolor,string Sex, string HeadDirection, string Depth,string SquareNorthSouth,string SquareEastWest,string EastWest,string NorthSouth,string Area, int pageNum = 1)
     {
 
         int pageSize = 20;
 
+        
             var data = new BurialsViewModel
             {
-                //Burialmains = _repo.burialdata.Where(b => (b.Sex == Sex || b.Sex == null) && (b.Depth == Depth || b.Depth == null))
-                //.OrderBy(p => p.Id)
-                //.Skip((pageNum - 1) * pageSize)
-                //.Take(pageSize),
-
-
                 burialInfo = (from bm in _repo.burialdata
-                              where ((bm.Sex == Sex || Sex == null) && (bm.Depth == Depth || Depth == null))
-                              orderby bm.Id
+                              where ((bm.Sex == Sex || Sex == null || Sex == "")
+                              && (bm.Depth == Depth || Depth == null)
+                              && (bm.Haircolor == Haircolor || Haircolor == null || Haircolor == "")
+                              && (bm.Ageatdeath == Age || Age == null || Age == "")
+                              && (bm.Headdirection == HeadDirection || HeadDirection == null || HeadDirection == "" )
+                              &&(bm.Facebundles == FaceBundles || FaceBundles == null || FaceBundles == "")
+                              &&(bm.Squareeastwest == SquareEastWest || SquareEastWest == null || SquareEastWest == "")
+                              &&(bm.Eastwest == EastWest || EastWest == null || EastWest == "")
+                              &&(bm.Squarenorthsouth == SquareNorthSouth || SquareNorthSouth == null || SquareNorthSouth == "")
+                              &&(bm.Northsouth == NorthSouth || NorthSouth == null || NorthSouth == "")
+                              &&(bm.Area == Area || Area == null || Area == "")
+                              &&(bm.Burialnumber == BurialNumber || BurialNumber == null || BurialNumber == "")
+                              )
+
+                              //orderby bm.Id
                               select new BurialPageModel
                               {
                                   Id = bm.Id,
                                   Sex = bm.Sex,
-                                  //TextileDescription = t.Description,
-
-                                  //this is how we want it
-                                  //Preservation = bm.Preservation,
-                                  //TextileId = t.Id,
-                                  //TextileStructure = s.Value,
-                                  //TextileColor = c.Value,
-                                  //Sex = bm.Sex,
+                                  Haircolor = bm.Haircolor,
                                   BurialDepth = bm.Depth,
-                                  //Age = bm.Ageatdeath,
-                                  //HeadDirection = bm.Headdirection,
+                                  Age = bm.Ageatdeath,
+                                  HeadDirection = bm.Headdirection,
                                   //TextileFunction = tf.Value,
-                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth +"/"+ bm.Squareeastwest + bm.Eastwest +"/"+ bm.Area + bm.Burialnumber)
-
+                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth + "/" + bm.Squareeastwest + bm.Eastwest + "/" + bm.Area + bm.Burialnumber),
+                                  FaceBundles = bm.Facebundles,
                                   //need to import csv to database
                                   //EstimatedStature = 
-                              }) 
+                              })
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize).ToList(),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurial = _repo.burialdata.Where(b => (b.Sex == Sex || b.Sex == null) && (b.Depth == Depth || b.Depth == null)).Count(),
+                    TotalNumBurial = _repo.burialdata.Where(b => ((b.Sex == Sex || Sex == null || Sex == "")
+                              && (b.Depth == Depth || Depth == null)
+                              && (b.Haircolor == Haircolor || Haircolor == null || Haircolor == "")
+                              && (b.Ageatdeath == Age || Age == null || Age == "")
+                              && (b.Headdirection == HeadDirection || HeadDirection == null || HeadDirection == "")
+                              && (b.Facebundles == FaceBundles || FaceBundles == null || FaceBundles == "")
+                              && (b.Squareeastwest == SquareEastWest || SquareEastWest == null || SquareEastWest == "")
+                              && (b.Eastwest == EastWest || EastWest == null || EastWest == "")
+                              && (b.Squarenorthsouth == SquareNorthSouth || SquareNorthSouth == null || SquareNorthSouth == "")
+                              && (b.Northsouth == NorthSouth || NorthSouth == null || NorthSouth == "")
+                              && (b.Area == Area || Area == null || Area == "")
+                              && (b.Burialnumber == BurialNumber || BurialNumber == null || BurialNumber == ""))).Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
 
-                //TextileDict = TextileDict,
-                //BurialIds = _repo.burialdata.OrderBy(p => p.Id).ToList()
-
+            
             };
             return View(data);
-        
-      }
+        //}
+        //else if(Sex == null || Haircolor != null)
+        //{
+        //    var data = new BurialsViewModel
+        //    {
+        //        burialInfo = (from bm in _repo.burialdata
+        //                      where ((bm.Depth == Depth || Depth == null) && (bm.Haircolor == Haircolor))
+        //                      orderby bm.Id
+        //                      select new BurialPageModel
+        //                      {
+        //                          Id = bm.Id,
+        //                          Sex = bm.Sex,
+        //                          //TextileDescription = t.Description,
+        //                          Haircolor = bm.Haircolor,
+        //                          //this is how we want it
+        //                          //Preservation = bm.Preservation,
+        //                          //TextileId = t.Id,
+        //                          //TextileStructure = s.Value,
+        //                          //TextileColor = c.Value,
+        //                          //Sex = bm.Sex,
+        //                          BurialDepth = bm.Depth,
+        //                          //Age = bm.Ageatdeath,
+        //                          //HeadDirection = bm.Headdirection,
+        //                          //TextileFunction = tf.Value,
+        //                          BurialId = (bm.Squarenorthsouth + bm.Northsouth + "/" + bm.Squareeastwest + bm.Eastwest + "/" + bm.Area + bm.Burialnumber)
+                                  
+        //                      })
+        //        .Skip((pageNum - 1) * pageSize)
+        //        .Take(pageSize).ToList(),
+
+        //        PageInfo = new PageInfo
+        //        {
+        //            TotalNumBurial = _repo.burialdata.Where(b => (b.Haircolor == Haircolor || b.Haircolor == null) && (b.Depth == Depth || b.Depth == null)).Count(),
+        //            BurialsPerPage = pageSize,
+        //            CurrentPage = pageNum
+        //        }
+               
+        //    };
+        //    return View(data);
+        //}
+        //else
+        //{
+        //    var data = new BurialsViewModel
+        //    {
+        //        burialInfo = (from bm in _repo.burialdata
+        //                      where (bm.Depth == Depth || Depth == null)
+        //                      orderby bm.Id
+        //                      select new BurialPageModel
+        //                      {
+        //                          Id = bm.Id,
+        //                          Sex = bm.Sex,
+        //                          //TextileDescription = t.Description,
+
+        //                          //this is how we want it
+        //                          //Preservation = bm.Preservation,
+        //                          //TextileId = t.Id,
+        //                          //TextileStructure = s.Value,
+        //                          //TextileColor = c.Value,
+        //                          //Sex = bm.Sex,
+        //                          BurialDepth = bm.Depth,
+        //                          //Age = bm.Ageatdeath,
+        //                          //HeadDirection = bm.Headdirection,
+        //                          //TextileFunction = tf.Value,
+        //                          BurialId = (bm.Squarenorthsouth + bm.Northsouth + "/" + bm.Squareeastwest + bm.Eastwest + "/" + bm.Area + bm.Burialnumber)
+
+
+        //                      })
+        //        .Skip((pageNum - 1) * pageSize)
+        //        .Take(pageSize).ToList(),
+
+        //        PageInfo = new PageInfo
+        //        {
+        //            TotalNumBurial = _repo.burialdata.Count(),
+        //            BurialsPerPage = pageSize,
+        //            CurrentPage = pageNum
+        //        }
+
+
+        //    };
+        //    return View(data);
+        //}
+
+
+    }
 
 
     ////////////////////

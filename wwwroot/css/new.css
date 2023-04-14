@@ -139,3 +139,9 @@ h2 {
     gap: 5px;
     align-self: center;
 }
+
+.FUN a[href]{
+    margin:0 5px;
+    text-decoration: none;
+    font-size:20px;
+}
