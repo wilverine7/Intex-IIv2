@@ -1,77 +1,147 @@
 ﻿* {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero1 {
-    height: 93vh;
-    overflow: hidden;
-    position: relative;
+  height: 93vh;
+  overflow: hidden;
+  position: relative;
 }
 
 .hero-text1 {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(0 0 0 / 0.2);
-    color: #fff;
-    padding: 0 1rem 2rem;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 0.2);
+  color: #fff;
+  padding: 0 1rem 2rem;
 }
 
 .hero-text1 h1 {
-    font-size: clamp(2rem, 9vw, 8rem);
-    line-height: 1;
-    margin: 0;
-    text-shadow: 1px 1px 2px black;
+  font-size: clamp(2rem, 9vw, 8rem);
+  line-height: 1;
+  margin: 0;
+  text-shadow: 1px 1px 2px black;
 }
 
 .video-background1 {
-    background: #000;
-    position: absolute;
-    inset: 0;
-    z-index: -99;
+  background: #000;
+  position: absolute;
+  inset: 0;
+  z-index: -99;
 }
 
 .video-foreground1,
 .video-background1 iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* because frameborder attribute of iframe is deprecated */
 iframe {
-    border: 0;
-    transform: scale(1.4);
+  border: 0;
+  transform: scale(1.4);
 }
 
 h2 {
-    margin: 0;
+  margin: 0;
 }
 
 .container1 {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 @media (min-aspect-ratio: 16/9) {
-    .video-foreground {
-        height: 300%;
-        top: -100%;
-    }
+  .video-foreground {
+    height: 300%;
+    top: -100%;
+  }
 }
 
 @media (max-aspect-ratio: 16/9) {
-    .video-foreground {
-        width: 300%;
-        left: -100%;
-    }
+  .video-foreground {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+.col1 {
+  height: 100%;
+  width: 200px;
+/*  position: fixed;*/
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  background-color: transparent;
+ 
+}
+
+.col1 div {
+  padding: 4px;
+  font-size: 15px;
+  display: flex;
+  flex-direction:column;
+
+}
+.col1 h2 {
+    
+    text-align:center;
+    margin-bottom:0px;
+    font-weight:300;
+}
+
+.footerCSS {
+    border-top: 1px solid lightgray;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-content:center;
+    position:relative;
+    height:50px;
+    padding-top:15px;
+}
+
+.col1 div label {
+    font-size:15px;
+   
+}
+
+.col1 div select {
+    width:80%;
+    font-size:15px;
+    align-self:center;
+}
+
+.col1 button {
+    width:50%;
+    align-self:center;
+    margin-top:10px;
+}
+
+.col1 div #Depth {
+    width:80%;
+    align-self:center;
+}
+
+.radiobtns div {
+    flex-direction: row;
+    gap: 5px;
+    align-self: center;
+}
+
+.FUN a[href]{
+    margin:0 5px;
+    text-decoration: none;
+    font-size:20px;
 }
