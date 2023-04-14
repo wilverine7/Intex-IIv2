@@ -44,7 +44,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = true;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 15;
+    options.Password.RequiredLength = 10;
     options.Password.RequiredUniqueChars = 2;
 
     // Lockout settings.
@@ -76,6 +76,17 @@ builder.Services.AddAuthorization(options =>
         .Build();
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole",
+       policy => policy.RequireRole("Admin"));
+});
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireResearcherRole",
+       policy => policy.RequireRole("Researcher", "Admin"));
+});
+
 
 var app = builder.Build();
 
@@ -104,5 +115,17 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+    var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+    AdminSeed.Initialize(context, userMgr, roleMgr).Wait();
+}
+
 app.Run();
+
+
 

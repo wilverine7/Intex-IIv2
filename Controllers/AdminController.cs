@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mummies.Models;
 using Mummies.Models.Repo;
@@ -25,6 +26,8 @@ namespace Mummies.Controllers
         ////////////////////
         /////   USERS
         ////////////////////
+        ///
+        [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Users()
         {
             return View();
