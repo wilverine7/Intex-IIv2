@@ -22,13 +22,16 @@ namespace Mummies.Controllers
         private IMummyRepository _repo;
 
         private ApplicationDbContext context;
+        private UserManager<IdentityUser> userManager;
+        private IPasswordHasher<IdentityUser> passwordHasher;
 
-
-        public AdminController(ILogger<AdminController> logger, ApplicationDbContext temp, IMummyRepository _temp)
+        public AdminController(ILogger<AdminController> logger, ApplicationDbContext temp, IMummyRepository _temp, UserManager<IdentityUser> usrMgr, IPasswordHasher<IdentityUser> passwordHash)
         {
             _logger = logger;
             context = temp;
             _repo = _temp;
+            userManager = usrMgr;
+            passwordHasher = passwordHash;
 
         }
 
@@ -56,6 +59,48 @@ namespace Mummies.Controllers
             
 
             return View(UserJoin);
+        }
+
+        
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Update(string Id)
+        {
+            IdentityUser user = await userManager.FindByIdAsync(Id);
+            if (user != null)
+                return RedirectToAction("Users");
+            else
+                return RedirectToAction("Users");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(string Id, string Role)
+        {
+            IdentityUser user = await userManager.FindByIdAsync(Id);
+            var link = context.UserRoles.Single(x => x.UserId == user.Id);
+            var rolerow = context.Roles.Single(x => link.RoleId == x.Id);
+
+            rolerow.Name = Role;
+            //IdentityRole role = await manage.   RManager.FindByIdAsync(Id)
+            if (user != null)
+            {
+                
+                IdentityResult result = await userManager.UpdateAsync(user);
+                
+                if (result.Succeeded)
+                    return RedirectToAction("Users");
+                else
+                    Errors(result);
+            }
+            else
+                ModelState.AddModelError("", "User Not Found");
+            return RedirectToAction("Users");
+        }
+
+        private void Errors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+                ModelState.AddModelError("", error.Description);
         }
 
         ////////////////////
