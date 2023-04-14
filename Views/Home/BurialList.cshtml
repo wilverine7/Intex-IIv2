@@ -19,20 +19,24 @@
                     <label for="female">Female</label>
                 </div>
             </div>
-            
+
             @*Hair Color*@
             <div>
                 <label for="inlineFormCustomSelect">Hair Color:</label>
-                <select id="HairColor">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select id="HairColor" name="Haircolor">
+                    <option selected value="">Choose...</option>
+                    <option value="B">Brown/DarkBrown/LtBrown</option>
+                    <option value="K">Black</option>
+                    <option value="A">Brown-Red</option>
+                    <option value="R">Red/Red-Bl</option>
+                    <option value="D">Blond</option>
+                    <option value="U">Unknown</option>
+                    <option value="N/A">N/A</option>
                 </select>
             </div>
 
             @*Textile Color*@
-            <div>
+            @*<div>
                 <label for="inlineFormCustomSelect">Textile Color:</label>
                 <select id="TextileColor">
                     <option selected>Choose...</option>
@@ -40,24 +44,23 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-            </div>
-
+            </div>*@
 
             @*Burial Depth*@
             <div>
                 <label for="Depth">Depth: </label>
                 <input type="text" name="Depth" id="Depth" />
             </div>
+
             @*Age at Death*@
             <div>
                 <label for="inlineFormCustomSelect">Age at Death</label>
-                <select id="TextileColor">
-                    <option selected>Choose...</option>
+                <select id="TextileColor" name="Age">
+                    <option selected value="">Choose...</option>
                     <option value="A">Adult</option>
                     <option value="C">Child</option>
                     <option value="I">Infant</option>
                     <option value="B">Baby</option>
-
                 </select>
             </div>
 
@@ -65,26 +68,79 @@
             <div>
                 <label for="HeadDirection">Head Direction:</label>
                 <select id="HeadDirection" name="HeadDirection">
-                    <option>Choose...</option>
-                    <option value="N">North</option>
+                    <option value="">Choose...</option>
                     <option value="E">East</option>
-                    <option value="S">South</option>
                     <option value="W">West</option>
                 </select>
             </div>
 
-            @*Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)*@
+            @*Facebundles*@
             <div>
-                <label for="inlineFormCustomSelect">Burial ID:</label>
-                <select id="TextileColor">
-                    <option selected>Choose...</option>
-                    <option value="">SquareNorthSouth</option>
-                    <option value="2">NorthSouth</option>
-                    <option value="3">SquareEastWest</option>
-                    <option value="4">EastWest</option>
-                    <option value="5">SquareEastWest</option>
+                <label for="Faceundles">Face Bundles:</label>
+                <select id="FaceBundles" name="FaceBundles">
+                    <option value="">Choose...</option>
+                    <option value="Y">Yes</option>
+                    <option value="">No</option>
                 </select>
             </div>
+
+            @*Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)*@
+        <div>
+            <label for="inlineFormCustomSelect">Burial ID:</label>
+            <label for="inlineFormCustomSelect">SquareNorthSouth:</label>
+            <select id="SquareNorthSouth" name="SquareNorthSouth">
+                <option selected value="">Choose...</option>
+                <option value="150">150</option>
+                <option value="160">160</option>
+                <option value="170">170</option>
+                <option value="180">180</option>
+                <option value="190">190</option>
+                <option value="200">200</option>
+            </select>
+
+            <label for="inlineFormCustomSelect">NorthSouth:</label>
+            <select id="NorthSouth" name="NorthSouth">
+                <option selected value="">Choose...</option>
+                <option value="N">North</option>
+                <option value="S">South</option>
+
+            </select>
+
+            <label for="inlineFormCustomSelect">SquareEastWest:</label>
+            <select id="SquareEastWest" name="SquareEastWest">
+                <option selected value="">Choose...</option>
+                <option value="">0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+            </select>
+
+            <label for="inlineFormCustomSelect">EastWest:</label>
+            <select id="EastWest" name="EastWest">
+                <option selected value="">Choose...</option>
+                <option value="E">East</option>
+                <option value="W">West</option>
+
+            </select>
+
+            <label for="inlineFormCustomSelect">Area:</label>
+            <select id="Area" name="Area">
+                <option selected value="">Choose...</option>
+                <option value="SW">SW</option>
+                <option value="NE">NE</option>
+                <option value="NW">NW</option>
+                <option value="SE">SE</option>
+                <option value="NNW">NNW</option>
+            </select>
+
+            <label for="inlineFormCustomSelect">Burial Number:</label>
+            <input type="text" name="BurialNumber" id="BurialNumber" />
+                
+</div>
 
             @*Textile Function*@
             <button type="submit">Filter</button>
@@ -104,14 +160,6 @@
                     <div class="card-body">
                         <h5 class="card-title">@b.Id</h5>
                         <h6 class="card-subtitle mb-2 text-muted">@b.BurialId</h6>
-                        @if (b.BurialDepth == "")
-                        {
-                            <p class="card-text">Depth: N/A</p>
-                        }
-                        else
-                        {
-                            <p class="card-text">Depth: @b.BurialDepth m</p>
-                        }
                         @if (b.Sex == "")
                         {
                             <p class="card-text">Sex: N/A</p>
