@@ -81,7 +81,13 @@ public class HomeController : Controller
                               && (b.Haircolor == Haircolor || Haircolor == null || Haircolor == "")
                               && (b.Ageatdeath == Age || Age == null || Age == "")
                               && (b.Headdirection == HeadDirection || HeadDirection == null || HeadDirection == "")
-                              && (b.Facebundles == FaceBundles || FaceBundles == null || FaceBundles == ""))).Count(),
+                              && (b.Facebundles == FaceBundles || FaceBundles == null || FaceBundles == "")
+                              && (b.Squareeastwest == SquareEastWest || SquareEastWest == null || SquareEastWest == "")
+                              && (b.Eastwest == EastWest || EastWest == null || EastWest == "")
+                              && (b.Squarenorthsouth == SquareNorthSouth || SquareNorthSouth == null || SquareNorthSouth == "")
+                              && (b.Northsouth == NorthSouth || NorthSouth == null || NorthSouth == "")
+                              && (b.Area == Area || Area == null || Area == "")
+                              && (b.Burialnumber == BurialNumber || BurialNumber == null || BurialNumber == ""))).Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
