@@ -38,6 +38,8 @@ public class HomeController : Controller
 
         int pageSize = 20;
 
+        if (Sex != null)
+        {
             var data = new BurialsViewModel
             {
                 //Burialmains = _repo.burialdata.Where(b => (b.Sex == Sex || b.Sex == null) && (b.Depth == Depth || b.Depth == null))
@@ -47,7 +49,7 @@ public class HomeController : Controller
 
 
                 burialInfo = (from bm in _repo.burialdata
-                              where ((bm.Sex == Sex || Sex == null) && (bm.Depth == Depth || Depth == null))
+                              where ((bm.Sex == Sex) && (bm.Depth == Depth || Depth == null))
                               orderby bm.Id
                               select new BurialPageModel
                               {
@@ -65,11 +67,11 @@ public class HomeController : Controller
                                   //Age = bm.Ageatdeath,
                                   //HeadDirection = bm.Headdirection,
                                   //TextileFunction = tf.Value,
-                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth +"/"+ bm.Squareeastwest + bm.Eastwest +"/"+ bm.Area + bm.Burialnumber)
+                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth + "/" + bm.Squareeastwest + bm.Eastwest + "/" + bm.Area + bm.Burialnumber)
 
                                   //need to import csv to database
                                   //EstimatedStature = 
-                              }) 
+                              })
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize).ToList(),
 
@@ -85,6 +87,56 @@ public class HomeController : Controller
 
             };
             return View(data);
+        }
+        else
+        {
+            var data = new BurialsViewModel
+            {
+                //Burialmains = _repo.burialdata.Where(b => (b.Sex == Sex || b.Sex == null) && (b.Depth == Depth || b.Depth == null))
+                //.OrderBy(p => p.Id)
+                //.Skip((pageNum - 1) * pageSize)
+                //.Take(pageSize),
+
+
+                burialInfo = (from bm in _repo.burialdata
+                              where (bm.Depth == Depth || Depth == null)
+                              orderby bm.Id
+                              select new BurialPageModel
+                              {
+                                  Id = bm.Id,
+                                  Sex = bm.Sex,
+                                  //TextileDescription = t.Description,
+
+                                  //this is how we want it
+                                  //Preservation = bm.Preservation,
+                                  //TextileId = t.Id,
+                                  //TextileStructure = s.Value,
+                                  //TextileColor = c.Value,
+                                  //Sex = bm.Sex,
+                                  BurialDepth = bm.Depth,
+                                  //Age = bm.Ageatdeath,
+                                  //HeadDirection = bm.Headdirection,
+                                  //TextileFunction = tf.Value,
+                                  BurialId = (bm.Squarenorthsouth + bm.Northsouth + "/" + bm.Squareeastwest + bm.Eastwest + "/" + bm.Area + bm.Burialnumber)
+
+                                  
+                              })
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize).ToList(),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurial = _repo.burialdata.Count(),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+
+                //TextileDict = TextileDict,
+                //BurialIds = _repo.burialdata.OrderBy(p => p.Id).ToList()
+
+            };
+            return View(data);
+        }
         
       }
 
