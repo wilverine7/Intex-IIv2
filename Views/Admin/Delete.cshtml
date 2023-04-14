@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+@model Burialmain
+
+<div class="text-center">
+    <h1>Confirm Your Deletion</h1>
+    <form method="post">
+        <input asp-for="Id" type="hidden"/>
+        <br /><br />
+        <span>
+            <label for="yes" style="margin-right:20px">YES</label>
+            <label for="no">NO</label><br />
+            <input id="yes" type="radio" name="delete" value="True" style="margin-right:35px"/>
+            <input id="no" type="radio" name="delete" value="False" />
+        </span><br /><br />
+        <button type="submit">Confirm</button>
+    </form>
+</div>

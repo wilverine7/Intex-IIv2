@@ -33,6 +33,8 @@ namespace Mummies.Models.Repo
 
         public void AddBurial(Burialmain burial)
         {
+            burial.Id = (_context.Burialmains
+                .Max(x => x.Id) + 1);
             _context.Burialmains.Add(burial);
             _context.SaveChanges();
         }
@@ -43,11 +45,18 @@ namespace Mummies.Models.Repo
             _context.SaveChanges();
         }
 
-        public void DeleteBurial(int burialId)
+        public void DeleteBurial(long burialId)
         {
             var burial = _context.Burialmains.Find(burialId);
             _context.Burialmains.Remove(burial);
             _context.SaveChanges();
+        }
+
+        public Burialmain GetBurial(long burialId)
+        {
+            var burial = _context.Burialmains.Find(burialId);
+
+            return burial;
         }
 
     }
