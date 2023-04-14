@@ -6,12 +6,12 @@
     <title>@ViewData["Title"] - Fag el-Gamous</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Mummies.styles.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/Mummies.styles.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/css/new.css" />
 </head>
 <body class="mb-0">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav style="z-index:1;"class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fag el-Gamous</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -40,13 +40,13 @@
     </header>
     <div class="container1">
         <partial name="_CookieConsentPartial" />
-        <main role="main" >
+        <main role="main" style="min-height:80vh;display:flex;flex-direction:column;" >
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted text-center p-3">
-        <div class="container">
+    <footer class="footerCSS">
+        <div class="container" style="text-align:center;">
             &copy; 2023 - Fag el-Gamous - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             <a class="p-3" asp-area="" asp-controller="Admin" asp-action="Crud">Update Records</a>
             <a asp-area="" asp-controller="Admin" asp-action="Users">Manage Users</a>

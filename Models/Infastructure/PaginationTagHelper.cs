@@ -27,24 +27,60 @@ namespace Mummies.Models.Infastructure
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-			IUrlHelper uh = uhf.GetUrlHelper(vc);
+            IUrlHelper uh = uhf.GetUrlHelper(vc);
 
-			TagBuilder final = new TagBuilder("div");
+            TagBuilder final = new TagBuilder("div");
 
-			for (int i=1; i< PageModel.TotalPages; i++)
-			{
-				TagBuilder tb = new TagBuilder("a");
-				tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
-				tb.Attributes["class"] = "pageNum";
-				tb.InnerHtml.Append(i.ToString());
+            for (int i = 1; i <= PageModel.TotalPages; i++)
+            {
+                TagBuilder tb = new TagBuilder("a");
 
-				final.InnerHtml.AppendHtml(tb);
-			}
+                if (i == 1 || i == PageModel.CurrentPage || i == PageModel.TotalPages || (i >= PageModel.CurrentPage - 2 && i <= PageModel.CurrentPage + 2))
+                {
 
-			output.Content.AppendHtml(final.InnerHtml);
+                    tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                    tb.InnerHtml.Append(i.ToString());
+                }
 
-            base.Process(context, output);
+
+                else if (i == PageModel.CurrentPage - 3 || i == PageModel.CurrentPage + 3)
+                {
+                    //display ellipsis (...) to indicate skipped pages
+                    tb.InnerHtml.Append("...");
+                }
+
+                //tb.AddCssClass(PageClass);
+                //tb.InnerHtml.Append(i.ToString());
+
+                final.InnerHtml.AppendHtml(tb);
+            }
+
+            output.Content.AppendHtml(final.InnerHtml);
+
         }
     }
 }
+
+
+
+//{
+      //IUrlHelper uh = uhf.GetUrlHelper(vc);
+
+//TagBuilder final = new TagBuilder("div");
+
+//for (int i=1; i< PageModel.TotalPages; i++)
+//{
+//	TagBuilder tb = new TagBuilder("a");
+//	tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+//	tb.Attributes["class"] = "pageNum";
+//	tb.InnerHtml.Append(i.ToString());
+
+//	final.InnerHtml.AppendHtml(tb);
+//}
+
+//output.Content.AppendHtml(final.InnerHtml);
+
+//         base.Process(context, output);
+//     }
+
 
